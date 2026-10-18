@@ -231,15 +231,18 @@ def check_seo(domaine):
 
 
 def check_performance(domaine):
-    """2 pts: TTFB < 800ms."""
+    """2 pts: TTFB < 800ms = 1pt, < 400ms = 2pts."""
     score = 0
     details = []
     code, body, ttfb, _ = get(domaine + "/")
-    if ttfb < 0.8:
-        score += 1
+    if ttfb < 0.4:
+        score += 2
         details.append(f"TTFB: {ttfb*1000:.0f}ms (excellent)")
+    elif ttfb < 0.8:
+        score += 1.5
+        details.append(f"TTFB: {ttfb*1000:.0f}ms (très bon)")
     elif ttfb < 1.5:
-        score += 0.5
+        score += 1
         details.append(f"TTFB: {ttfb*1000:.0f}ms (acceptable)")
     else:
         details.append(f"TTFB: {ttfb*1000:.0f}ms (lent)")

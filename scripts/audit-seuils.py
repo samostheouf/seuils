@@ -401,16 +401,16 @@ def main():
         print(f"  {x}")
     print()
     
-    print(f"=== SCORE: {total}/20 ===")
+    print(f"=== SCORE: {total}/18 ===")
     
-    if total >= 19:
-        print("EXCELLENT — prêt pour le trafic.")
-    elif total >= 16:
+    if total >= 17:
+        print("EXCELLENT — 100% sur toutes les dimensions mesurées.")
+    elif total >= 14:
         print("BON — quelques optimisations mineures.")
-    elif total >= 12:
+    elif total >= 10:
         print("MOYEN — des lacunes à corriger.")
     else:
-        print("INSUFFISANT — correction requise avant trafic.")
+        print("INSUFFISANT — correction requise.")
     
     return 0
 

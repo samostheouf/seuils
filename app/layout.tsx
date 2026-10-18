@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { CriticalCSS } from './critical-css';
+import { ResourceHints } from './resource-hints';
 
 const URL_SITE = 'https://seuils-virid.vercel.app';
 
@@ -22,6 +24,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
+      <head>
+        <ResourceHints />
+        <CriticalCSS />
+      </head>
       <body>{children}</body>
     </html>
   );

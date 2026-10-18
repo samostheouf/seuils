@@ -1,5 +1,5 @@
 {
-  "version": "2026.2",
+  "version": "2026.3",
   "mise_a_jour": "2026-10-18",
   "annee_reference": 2026,
   "description": "Paramètres officiels du régime micro-entrepreneur en France. Chaque valeur est tracée à sa source et à sa date de vérification.",
@@ -276,7 +276,7 @@
     "csv": "/api/v1/parametres.csv"
   },
   "drom": {
-    "nature": "Taux réduits de cotisations sociales pour les micro-entrepreneurs exerçant dans les DROM.",
+    "nature": "Taux réduits de cotisations sociales pour les micro-entrepreneurs exerçant dans les DROM (hors Mayotte).",
     "territoires": [
       "Guadeloupe",
       "Martinique",
@@ -285,29 +285,81 @@
       "Saint-Barthélemy",
       "Saint-Martin"
     ],
-    "exclusion": "Mayotte relève d'un régime distinct.",
-    "base_legale": "Décret n° 2017-972 du 9 mai 2017",
+    "exclusion": "Mayotte relève d'un régime distinct (voir section mayotte).",
+    "base_legale": "Décret n° 2017-972 du 9 mai 2017 (art. D. 756-5 du code de la sécurité sociale) : 1/6 ou 1/3, puis 1/2, puis 2/3 des taux pleins de métropole.",
     "source": "urssaf-drom",
+    "statut": "CONFIRME",
+    "methode": "Valeurs lues dans le tableau officiel Urssaf « L'essentiel du statut », qui publie les taux et non seulement les fractions. Elles ne sont PAS calculées par ce projet.",
     "periodes": [
       {
         "code": "periode_1",
-        "fraction": "1/6 du taux de métropole",
-        "duree": "Jusqu'à la fin du 7e trimestre civil suivant celui de début d'activité",
-        "sauf_cipav": "1/3 du taux de métropole pour les professions libérales réglementées (Cipav)"
+        "fraction": "1/6 des taux pleins (1/3 pour les professions libérales réglementées)",
+        "duree": "Jusqu'à la fin du 7e trimestre civil suivant celui du début d'activité"
       },
       {
         "code": "periode_2",
-        "fraction": "1/2 du taux de métropole",
-        "duree": "Du 8e trimestre civil suivant celui de début d'activité jusqu'à la fin de la 3e année civile"
+        "fraction": "1/2 des taux pleins",
+        "duree": "Du 8e trimestre civil suivant celui du début d'activité jusqu'à la fin de la 3e année civile d'activité"
       },
       {
         "code": "periode_3",
-        "fraction": "2/3 du taux de métropole",
-        "duree": "À compter de la 4e année civile d'activité"
+        "fraction": "2/3 des taux pleins",
+        "duree": "À compter de la 4e année civile d'activité (régime de croisière)"
       }
     ],
-    "note": "Les fractions s'appliquent aux taux de droit commun de métropole. Cette section est publiée avec une réserve : la source unique consultée est la page Urssaf « L'essentiel du statut » ; une vérification complémentaire sur la page Urssaf dédiée aux DROM est recommandée avant usage réglementaire.",
-    "statut": "A_VERIFIER_COMPLEMENT"
+    "taux_par_activite": [
+      {
+        "code": "BIC_vente",
+        "activite": "Vente de marchandises (BIC)",
+        "taux_plein_metropole": 12.3,
+        "periode_1": 2.1,
+        "periode_2": 6.2,
+        "periode_3": 8.2
+      },
+      {
+        "code": "BIC_service",
+        "activite": "Prestations de services commerciales ou artisanales (BIC)",
+        "taux_plein_metropole": 21.2,
+        "periode_1": 3.6,
+        "periode_2": 10.6,
+        "periode_3": 14.2
+      },
+      {
+        "code": "BNC",
+        "activite": "Autres prestations de services (BNC)",
+        "taux_plein_metropole": 25.6,
+        "periode_1": 4.3,
+        "periode_2": 12.8,
+        "periode_3": 17.1,
+        "note": "Valeurs au 1er janvier 2026."
+      },
+      {
+        "code": "meuble_classe",
+        "activite": "Meublés de tourisme classés",
+        "taux_plein_metropole": 6.0,
+        "periode_1": 1.0,
+        "periode_2": 3.0,
+        "periode_3": 4.0
+      },
+      {
+        "code": "cipav",
+        "activite": "Professions libérales réglementées relevant de la Cipav (BIC ou BNC)",
+        "taux_plein_metropole": 23.2,
+        "periode_1": 7.8,
+        "periode_2": 11.6,
+        "periode_3": 15.5,
+        "note": "Valeurs affichées au 1er juillet 2024 par la source. À re-vérifier avant usage réglementaire."
+      },
+      {
+        "code": "cipav_meuble_classe",
+        "activite": "Cipav — meublés de tourisme classés",
+        "taux_plein_metropole": 6.0,
+        "periode_1": 2.0,
+        "periode_2": 3.0,
+        "periode_3": 4.0
+      }
+    ],
+    "incoherence_source": "La note de la source indique une durée de 24 mois, tandis que le tableau décrit 3 périodes couvrant 3 années civiles. La contradiction n'est pas tranchée : se fier au tableau (3 périodes), la note semblant générique."
   },
   "historique_versions": [
     {
@@ -319,6 +371,61 @@
       "version": "2026.2",
       "date": "2026-10-18",
       "changement": "Correction majeure : les taux ACRE publies en 2026.1 (6,2 / 10,6 / 12,8 / 13,4 / 3,0) etaient perimes. Le decret n° 2026-69 du 6 fevrier 2026 a porte le taux minore de 50 % a 75 % du taux normal au 1er juillet 2026. Ajout des taux ACRE a jour, des conditions de revenu, et des taux reduits DROM."
+    },
+    {
+      "version": "2026.3",
+      "date": "2026-10-18",
+      "changement": "DROM : valeurs remplacees par le tableau officiel Urssaf (2,1 / 3,6 / 4,3 / 1,0 / 7,8 en periode 1) au lieu de valeurs calculees. Ajout Mayotte (5,3 / 9,1 / 12 / 16,6). Ajout d'une section lacunes_connues publiant les 4 incertitudes non tranchees."
+    }
+  ],
+  "mayotte": {
+    "nature": "Mayotte relève d'un régime distinct des DROM.",
+    "source": "urssaf-drom",
+    "statut": "CONFIRME",
+    "note": "Taux publiés par la source Urssaf. Par ailleurs, une exonération de cotisations est rapportée pour Mayotte après le cyclone Chido, sans terme annoncé.",
+    "taux": [
+      {
+        "code": "BIC_vente",
+        "activite": "Vente de marchandises (BIC)",
+        "taux": 5.3
+      },
+      {
+        "code": "BIC_service",
+        "activite": "Prestations de services artisanales et commerciales (BIC)",
+        "taux": 9.1
+      },
+      {
+        "code": "BNC",
+        "activite": "Autres prestations de services",
+        "taux": 12.0
+      },
+      {
+        "code": "cipav",
+        "activite": "Professions libérales réglementées relevant de la Cipav",
+        "taux": 16.6
+      }
+    ]
+  },
+  "lacunes_connues": [
+    {
+      "objet": "Cumul ACRE + DROM",
+      "detail": "Aucune source officielle consultée ne tranche si l'ACRE et les taux réduits DROM se cumulent ou s'excluent. Une source tierce affirme qu'un micro-entrepreneur en DROM ne peut pas bénéficier de l'ACRE — non confirmé par une source officielle.",
+      "statut": "NON_TROUVE"
+    },
+    {
+      "objet": "Durée exacte des périodes DROM",
+      "detail": "Contradiction dans la source entre « 24 mois » (note) et 3 périodes sur 3 ans (tableau). Non tranchée.",
+      "statut": "NON_TROUVE"
+    },
+    {
+      "objet": "Taux DROM Cipav pour 2026",
+      "detail": "Dernier affichage connu au 1er juillet 2024. Non re-vérifié pour 2026.",
+      "statut": "NON_VERIFIE"
+    },
+    {
+      "objet": "Seuils de chiffre d'affaires spécifiques à Mayotte",
+      "detail": "Non re-vérifiés pour 2026.",
+      "statut": "NON_TROUVE"
     }
   ]
 }

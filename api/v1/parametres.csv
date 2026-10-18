@@ -37,6 +37,28 @@ taux_normal_reference,Professions libérales réglementées (Cipav),cipav,23.2,P
 taux_acre_avant_2026_07_01,Location de meublés de tourisme classés,meuble_classe,3.0,POURCENT,2026-H1,legifrance-decret-2026-69
 taux_acre_depuis_2026_07_01,Location de meublés de tourisme classés,meuble_classe,4.5,POURCENT,2026-H2,legifrance-decret-2026-69
 taux_normal_reference,Location de meublés de tourisme classés,meuble_classe,6.0,POURCENT,2026,economie.gouv
+drom_p1,Vente de marchandises (BIC),BIC_vente,2.1,POURCENT,2026,urssaf-drom
+drom_p2,Vente de marchandises (BIC),BIC_vente,6.2,POURCENT,2026,urssaf-drom
+drom_p3,Vente de marchandises (BIC),BIC_vente,8.2,POURCENT,2026,urssaf-drom
+drom_p1,Prestations de services commerciales ou artisanales (BIC),BIC_service,3.6,POURCENT,2026,urssaf-drom
+drom_p2,Prestations de services commerciales ou artisanales (BIC),BIC_service,10.6,POURCENT,2026,urssaf-drom
+drom_p3,Prestations de services commerciales ou artisanales (BIC),BIC_service,14.2,POURCENT,2026,urssaf-drom
+drom_p1,Autres prestations de services (BNC),BNC,4.3,POURCENT,2026,urssaf-drom
+drom_p2,Autres prestations de services (BNC),BNC,12.8,POURCENT,2026,urssaf-drom
+drom_p3,Autres prestations de services (BNC),BNC,17.1,POURCENT,2026,urssaf-drom
+drom_p1,Meublés de tourisme classés,meuble_classe,1.0,POURCENT,2026,urssaf-drom
+drom_p2,Meublés de tourisme classés,meuble_classe,3.0,POURCENT,2026,urssaf-drom
+drom_p3,Meublés de tourisme classés,meuble_classe,4.0,POURCENT,2026,urssaf-drom
+drom_p1,Professions libérales réglementées relevant de la Cipav (BIC ou BNC),cipav,7.8,POURCENT,2026,urssaf-drom
+drom_p2,Professions libérales réglementées relevant de la Cipav (BIC ou BNC),cipav,11.6,POURCENT,2026,urssaf-drom
+drom_p3,Professions libérales réglementées relevant de la Cipav (BIC ou BNC),cipav,15.5,POURCENT,2026,urssaf-drom
+drom_p1,Cipav — meublés de tourisme classés,cipav_meuble_classe,2.0,POURCENT,2026,urssaf-drom
+drom_p2,Cipav — meublés de tourisme classés,cipav_meuble_classe,3.0,POURCENT,2026,urssaf-drom
+drom_p3,Cipav — meublés de tourisme classés,cipav_meuble_classe,4.0,POURCENT,2026,urssaf-drom
+mayotte,Vente de marchandises (BIC),BIC_vente,5.3,POURCENT,2026,urssaf-drom
+mayotte,Prestations de services artisanales et commerciales (BIC),BIC_service,9.1,POURCENT,2026,urssaf-drom
+mayotte,Autres prestations de services,BNC,12.0,POURCENT,2026,urssaf-drom
+mayotte,Professions libérales réglementées relevant de la Cipav,cipav,16.6,POURCENT,2026,urssaf-drom
 seuil_micro_fiscal_historique,BIC_vente,BIC_vente,176200,EUR,2022,service-public-revalorisation
 seuil_micro_fiscal_historique,BIC_service_et_BNC,BIC_service_et_BNC,72600,EUR,2022,service-public-revalorisation
 seuil_micro_fiscal_historique,BIC_vente,BIC_vente,188700,EUR,2023,service-public-revalorisation

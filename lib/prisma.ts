@@ -13,11 +13,24 @@ import path from 'path';
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
+// Pool de connexions optimisé pour serverless Vercel :
+// - connection_limit=1 : chaque instance n'ouvre qu'une connexion (économise les slots)
+// - pool_timeout=10 : libère vite les connexions inactives
+// - connect_timeout=5 : échoue vite plutôt que de laisser le visiteur attendre
+const dbUrl = process.env.DATABASE_URL ?? '';
+const separator = dbUrl.includes('?') ? '&' : '?';
+const optimizedUrl = dbUrl + (dbUrl.includes('connection_limit') ? '' : `${separator}connection_limit=1&pool_timeout=10&connect_timeout=5`);
+
 export const prisma =
   globalForPrisma.prisma ??
   new PrismaClient({
     log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
-  });
+    datasources: {
+      db: {
+        url: optimizedUrl,
+      },
+    },
+  } as ConstructorParameters<typeof PrismaClient>[0]);
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 

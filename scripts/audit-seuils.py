@@ -122,6 +122,7 @@ def check_securite(domaine):
     except:
         headers = {}
     
+    headers_lower = {k.lower(): v for k, v in headers.items()}
     checks = [
         ("strict-transport-security", "HSTS", 0.5),
         ("content-security-policy", "CSP", 0.5),
@@ -131,7 +132,7 @@ def check_securite(domaine):
         ("permissions-policy", "Permissions", 0.5),
     ]
     for key, label, pts in checks:
-        if key in headers:
+        if key in headers_lower:
             score += pts
             details.append(f"{label}: OK")
         else:

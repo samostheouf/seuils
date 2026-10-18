@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
+
+// Forcer la plateforme Linux pour le build (Termux/Android détecte comme 'android').
+// Sans ça, Next.js essaie de charger le binaire SWC Android, qui n'existe pas.
+Object.defineProperty(process, 'platform', { value: 'linux' });
+
 const securityHeaders = [
   {
     key: 'X-DNS-Prefetch-Control',

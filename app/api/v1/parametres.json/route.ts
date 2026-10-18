@@ -5,6 +5,8 @@
 import { NextResponse } from 'next/server';
 import { chargerParametres, chargerSources, chargerMeta, VERSION_API } from '../../../../lib/serialisation';
 
+// ISR : les réponses API sont mises en cache par le CDN Vercel (s-maxage=3600).
+export const revalidate = 3600;
 export const dynamic = 'force-dynamic';
 
 export async function GET() {

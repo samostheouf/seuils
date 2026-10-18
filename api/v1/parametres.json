@@ -1,0 +1,122 @@
+{
+  "version": "2026.1",
+  "mise_a_jour": "2026-10-18",
+  "annee_reference": 2026,
+  "description": "Paramètres officiels du régime micro-entrepreneur en France. Chaque valeur est tracée à sa source et à sa date de vérification.",
+  "sources": [
+    {
+      "id": "economie.gouv",
+      "nom": "Ministère de l'Économie — Micro-entreprises, montant des cotisations sociales",
+      "url": "https://www.economie.gouv.fr/entreprises/gerer-sa-micro-entreprise/micro-entreprises-quel-est-le-montant-de-vos-cotisations-sociales"
+    },
+    {
+      "id": "service-public-tva",
+      "nom": "Service Public Entreprendre — Franchise en base de TVA (vérifié le 01/01/2026)",
+      "url": "https://entreprendre.service-public.gouv.fr/vosdroits/F21746"
+    },
+    {
+      "id": "service-public-micro",
+      "nom": "Service Public Entreprendre — Régime fiscal de la micro-entreprise (vérifié le 13/05/2026)",
+      "url": "https://entreprendre.service-public.gouv.fr/vosdroits/F23267"
+    },
+    {
+      "id": "service-public-cotisations",
+      "nom": "Service Public Entreprendre — Cotisations sociales d'un micro-entrepreneur",
+      "url": "https://entreprendre.service-public.gouv.fr/vosdroits/F36232"
+    },
+    {
+      "id": "urssaf-taux",
+      "nom": "Urssaf — Évolution des taux de cotisations sociales des auto-entrepreneurs",
+      "url": "https://www.urssaf.fr/accueil/actualites/taux-cotisations-autoentrepeneur.html"
+    },
+    {
+      "id": "impots-tva",
+      "nom": "impots.gouv.fr — Micro-entrepreneur et TVA",
+      "url": "https://www.impots.gouv.fr/professionnel/questions/en-tant-que-micro-entrepreneur-puis-je-etre-redevable-de-la-tva"
+    }
+  ],
+
+  "seuils_micro_fiscal": {
+    "unite": "EUR",
+    "nature": "chiffre d'affaires HT annuel",
+    "regle": "Le régime micro-fiscal n'est pas applicable en N si le seuil est dépassé 2 années de suite (N-1 et N-2).",
+    "source": "service-public-micro",
+    "valeurs": [
+      { "activite": "Vente de marchandises, objets, fournitures, denrées à emporter ou à consommer sur place", "code": "BIC_vente", "seuil": 203100 },
+      { "activite": "Prestations de services", "code": "BIC_service", "seuil": 83600 },
+      { "activite": "Activité libérale (BNC)", "code": "BNC", "seuil": 83600 },
+      { "activite": "Prestations d'hébergement", "code": "hebergement", "seuil": 83600 },
+      { "activite": "Meublé de tourisme classé / chambre d'hôtes", "code": "meuble_classe", "seuil": 83600 },
+      { "activite": "Meublé de tourisme non classé", "code": "meuble_non_classe", "seuil": 15000 }
+    ],
+    "activite_mixte": {
+      "regle": "Le chiffre d'affaires global ne doit pas dépasser 203 100 €, dont un maximum de 83 600 € pour les prestations de services.",
+      "source": "economie.gouv"
+    }
+  },
+
+  "seuils_tva_franchise": {
+    "unite": "EUR",
+    "nature": "chiffre d'affaires HT annuel",
+    "regle": "La franchise cesse au 1er janvier N+1 si le seuil de base est dépassé en N ; elle cesse dès le 1er jour du dépassement si le seuil majoré est franchi en cours d'année.",
+    "note_2026": "Pour 2026, les seuils restent inchangés. La proposition de loi de finances 2025 visant un seuil unique à 25 000 € a été abandonnée.",
+    "source": "service-public-tva",
+    "valeurs": [
+      { "activite": "Livraisons de biens, prestations de service, ventes à consommer sur place, hébergement", "code": "general", "seuil_base": 85000, "seuil_majore": 93500 },
+      { "activite": "Autres prestations de services", "code": "services", "seuil_base": 37500, "seuil_majore": 41250 },
+      { "activite": "Activités spécifiques des avocats, auteurs et artistes-interprètes", "code": "avocats_auteurs_specifique", "seuil_base": 50000, "seuil_majore": 55000 },
+      { "activite": "Autres activités des avocats, auteurs et artistes-interprètes", "code": "avocats_auteurs_autres", "seuil_base": 35000, "seuil_majore": 38500 }
+    ],
+    "base_legale": "article 293 B du Code général des impôts",
+    "mention_facture": "TVA non applicable - article 293 B du CGI"
+  },
+
+  "taux_cotisations_sociales": {
+    "unite": "pourcentage du chiffre d'affaires",
+    "source": "economie.gouv",
+    "valeurs": [
+      { "activite": "Achat / revente de marchandises", "code": "BIC_vente", "taux": 12.3 },
+      { "activite": "Prestations de services commerciales et artisanales", "code": "BIC_service", "taux": 21.2 },
+      { "activite": "Autres prestations de services", "code": "BNC", "taux": 25.6, "taux_2025": 24.6, "note": "Hausse progressive prévue par décret du 30 mai 2024 (21,1 % → 23,1 % → 24,6 % → 25,6 %)" },
+      { "activite": "Professions libérales réglementées relevant de la Cipav", "code": "cipav", "taux": 23.2 },
+      { "activite": "Location de meublés de tourisme classés", "code": "meuble_classe", "taux": 6.0 }
+    ]
+  },
+
+  "versement_liberatoire": {
+    "unite": "pourcentage du chiffre d'affaires",
+    "nature": "option — l'Urssaf collecte l'impôt sur le revenu en même temps que les cotisations",
+    "source": "service-public-cotisations",
+    "valeurs": [
+      { "activite": "Vente de marchandises", "code": "BIC_vente", "taux": 13.3 },
+      { "activite": "Prestations de services (BIC)", "code": "BIC_service", "taux": 22.9 },
+      { "activite": "Activité libérale non réglementée (BNC)", "code": "BNC", "taux": 27.8 },
+      { "activite": "Activité libérale réglementée (Cipav)", "code": "cipav", "taux": 25.4 }
+    ]
+  },
+
+  "acre": {
+    "nature": "exonération partielle de cotisations sociales la 1re année d'activité",
+    "source": "economie.gouv",
+    "valeurs_publiees": [
+      { "activite": "Vente de marchandises (BIC)", "code": "BIC_vente", "taux": 6.2 },
+      { "activite": "Prestations de services artisanales ou commerciales (BIC)", "code": "BIC_service", "taux": 10.6 },
+      { "activite": "Autres prestations de services (BNC)", "code": "BNC", "taux": 12.8 },
+      { "activite": "Professions libérales relevant de la Cipav", "code": "cipav", "taux": 13.4 }
+    ],
+    "a_verifier": {
+      "objet": "Changement du taux minoré ACRE au 1er juillet 2026",
+      "contenu": "Selon la même source, à partir du 1er juillet 2026 le taux minoré passerait de 50 % à 75 % des taux habituels, ramenant l'exonération de 50 % à 25 %. Les taux ci-dessus (relevés comme taux publiés) pourraient donc ne plus être à jour.",
+      "statut": "NON VERIFIE — à confirmer sur la page Urssaf dédiée à l'ACRE avant toute utilisation.",
+      "source": "economie.gouv"
+    }
+  },
+
+  "changement_a_venir": {
+    "date": "2027-01-01",
+    "objet": "Recodification de la TVA",
+    "contenu": "La mention de franchise en base de TVA passe de « article 293 B du CGI » à « article L.233-3 du Code des impositions des biens et des services (CIBS) », du fait de l'ordonnance n° 2025-1247 du 17 décembre 2025 et de l'ordonnance n° 2026-671 du 27 juillet 2026.",
+    "impact": "Les modèles de factures et les logiciels de facturation devront être mis à jour avant le 1er janvier 2027.",
+    "source": "impots-tva"
+  }
+}

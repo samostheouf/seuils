@@ -5,7 +5,7 @@ Controle chaque endpoint en live, valide le JSON recu, et compare la version
 servie a celle du depot local. Un site qui repond 200 avec un JSON casse
 n'est pas un site qui fonctionne.
 
-Usage: python3 scripts/verifier-live.py [--domaine https://...]
+Usage: python3 scripts/verifier-live.py [--domaine https://...] [--json-uniquement]
 Sortie: 0 si tout est conforme, 1 sinon.
 """
 import json
@@ -22,11 +22,16 @@ ENDPOINTS_JSON = [
     "/api/v1/parametres.json",
     "/api/v1/changelog.json",
     "/api/v1/sources.json",
+    "/api/v1/historique.json",
+    "/api/v1/tva.json",
+    "/api/v1/acre.json",
+    "/api/v1/drom.json",
     "/api/health",
 ]
 ENDPOINTS_TEXTE = [
     "/",
     "/api/v1/parametres.csv",
+    "/api/v1/csv",
     "/sitemap.xml",
     "/robots.txt",
 ]
@@ -60,10 +65,12 @@ def main():
 
     version_servie = None
     nb_parametres_servis = None
+    resultats_json = {}
     for chemin in ENDPOINTS_JSON:
         try:
             code, corps = recuperer(domaine + chemin)
             donnees = json.loads(corps)
+            resultats_json[chemin] = donnees
             print(f"  OK    {code}  {chemin}  (JSON valide, {len(corps)} o)")
             if chemin.endswith("parametres.json"):
                 version_servie = donnees.get("version_donnees")
@@ -95,6 +102,18 @@ def main():
         )
     else:
         print(f"  OK    {nb_parametres_servis} valeurs servies = {attendu} dans le snapshot")
+
+    # Verifier que les nouveaux endpoints ont du contenu
+    for chemin, donnees in resultats_json.items():
+        if chemin == "/api/health":
+            continue
+        if chemin.endswith(".json"):
+            cle = chemin.replace("/api/v1/", "").replace(".json", "")
+            liste = donnees.get(cle, donnees.get("parametres", donnees.get("historique", donnees.get("changements", donnees.get("tva", donnees.get("acre", donnees.get("drom", [])))))))
+            if isinstance(liste, list) and len(liste) == 0:
+                echecs.append(f"{chemin} : 0 entrees — endpoint vide")
+            elif isinstance(liste, list):
+                print(f"  OK    {chemin} : {len(liste)} entrees")
 
     print()
     if echecs:

@@ -49,6 +49,39 @@ export default async function Page() {
 
   return (
     <div className="wrap">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Dataset',
+            name: 'Paramètres du régime micro-entrepreneur (France)',
+            description:
+              "Seuils du régime micro-fiscal, franchise en base de TVA, taux de cotisations sociales, ACRE et taux réduits DROM, avec sources officielles et historique des changements.",
+            url: 'https://seuils-virid.vercel.app/',
+            license: 'https://creativecommons.org/publicdomain/zero/1.0/',
+            isAccessibleForFree: true,
+            keywords: [
+              'micro-entrepreneur',
+              'auto-entrepreneur',
+              'seuils',
+              'TVA',
+              'cotisations sociales',
+              'ACRE',
+              'DROM',
+              'France',
+            ],
+            spatialCoverage: 'FR',
+            variableMeasured: P.length,
+            distribution: [
+              { '@type': 'DataDownload', contentUrl: 'https://seuils-virid.vercel.app/api/v1/parametres.json', encodingFormat: 'application/json' },
+              { '@type': 'DataDownload', contentUrl: 'https://seuils-virid.vercel.app/api/v1/changelog.json', encodingFormat: 'application/json' },
+              { '@type': 'DataDownload', contentUrl: 'https://seuils-virid.vercel.app/api/v1/sources.json', encodingFormat: 'application/json' },
+              { '@type': 'DataDownload', contentUrl: 'https://seuils-virid.vercel.app/api/v1/parametres.csv', encodingFormat: 'text/csv' },
+            ],
+          }),
+        }}
+      />
       <header>
         <h1>Seuils du régime micro-entrepreneur</h1>
         <p className="sub">
@@ -87,6 +120,15 @@ export default async function Page() {
           }}
         />
       </table>
+      <div className="box warnbox">
+        <h3 className="warn">À retenir pour 2027</h3>
+        <p className="note" style={{ margin: 0 }}>
+          La mention de franchise sur les factures passe de <code>article 293 B du CGI</code> à{' '}
+          <code>article L.233-3 du CIBS</code> au 1<sup>er</sup> janvier 2027 (recodification de la
+          TVA). Les modèles de factures et les logiciels de facturation doivent être mis à jour
+          avant cette date.
+        </p>
+      </div>
 
       <h2>Taux de cotisations sociales (2026)</h2>
       <p className="note">Pourcentage appliqué au chiffre d&apos;affaires déclaré. Aucune cotisation si le chiffre d&apos;affaires est nul.</p>

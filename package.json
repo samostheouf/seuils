@@ -1,0 +1,26 @@
+{
+  "name": "seuils",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Parametres officiels du regime micro-entrepreneur francais : API versionnee, sourcee, avec historique.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "postinstall": "prisma generate",
+    "schema": "node scripts/appliquer-schema.mjs",
+    "seed": "node scripts/seed.mjs",
+    "snapshot": "node scripts/snapshot.mjs",
+    "publier": "bash scripts/publier.sh"
+  },
+  "dependencies": {
+    "@prisma/client": "5.22.0",
+    "next": "14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "pg": "^8.13.1",
+    "prisma": "5.22.0"
+  }
+}

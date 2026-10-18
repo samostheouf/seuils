@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+"""verifie que tout ce qui est publie est reellement servi.
+
+Controle chaque endpoint en live, valide le JSON recu, et compare la version
+servie a celle du depot local. Un site qui repond 200 avec un JSON casse
+n'est pas un site qui fonctionne.
+
+Usage: python3 scripts/verifier-live.py [--domaine https://...]
+Sortie: 0 si tout est conforme, 1 sinon.
+"""
+import json
+import os
+import sys
+import urllib.error
+import urllib.request
+
+RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOMAINE_DEFAUT = "https://seuils-virid.vercel.app"
+UA = "Mozilla/5.0 (compatible; seuils-verif/1.0)"
+
+ENDPOINTS_JSON = [
+    "/api/v1/parametres.json",
+    "/api/v1/changelog.json",
+    "/api/v1/sources.json",
+    "/api/health",
+]
+ENDPOINTS_TEXTE = [
+    "/",
+    "/api/v1/parametres.csv",
+    "/sitemap.xml",
+    "/robots.txt",
+]
+
+
+def recuperer(url):
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    with urllib.request.urlopen(req, timeout=25) as r:
+        return r.status, r.read()
+
+
+def main():
+    domaine = DOMAINE_DEFAUT
+    if "--domaine" in sys.argv:
+        domaine = sys.argv[sys.argv.index("--domaine") + 1]
+
+    echecs = []
+    print(f"Verification live : {domaine}")
+
+    for chemin in ENDPOINTS_TEXTE:
+        try:
+            code, corps = recuperer(domaine + chemin)
+            if code == 200 and corps:
+                print(f"  OK    {code}  {chemin}  ({len(corps)} o)")
+            else:
+                echecs.append(f"{chemin} : HTTP {code}, {len(corps)} octets")
+        except urllib.error.HTTPError as e:
+            echecs.append(f"{chemin} : HTTP {e.code}")
+        except Exception as e:
+            echecs.append(f"{chemin} : {type(e).__name__}")
+
+    version_servie = None
+    for chemin in ENDPOINTS_JSON:
+        try:
+            code, corps = recuperer(domaine + chemin)
+            donnees = json.loads(corps)
+            print(f"  OK    {code}  {chemin}  (JSON valide, {len(corps)} o)")
+            if chemin.endswith("parametres.json"):
+                version_servie = donnees.get("version")
+        except json.JSONDecodeError as e:
+            echecs.append(f"{chemin} : JSON invalide ({e})")
+        except Exception as e:
+            echecs.append(f"{chemin} : {type(e).__name__}")
+
+    # La version servie doit correspondre au depot local.
+    local = os.path.join(RACINE, "data", "parametres.json")
+    with open(local, encoding="utf-8") as f:
+        version_locale = json.load(f).get("version")
+    if version_servie and version_locale and version_servie != version_locale:
+        echecs.append(f"version servie {version_servie} != version locale {version_locale} — deploiement non propage ?")
+    else:
+        print(f"  OK    version servie = version locale ({version_locale})")
+
+    print()
+    if echecs:
+        print(f"ECHECS ({len(echecs)}) :")
+        for e in echecs:
+            print(f"  - {e}")
+        return 1
+    print("Tout est conforme en live.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

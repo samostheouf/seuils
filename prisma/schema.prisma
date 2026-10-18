@@ -1,0 +1,96 @@
+// Seuils — schéma Prisma
+//
+// Décodé depuis la fin : l'objectif est qu'un développeur obtienne la valeur
+// correcte pour n'importe quelle année, avec sa source et sa date de changement.
+// Trois tables en découlent, pas une de plus :
+//
+//   Source      : d'où vient chaque valeur (traçabilité obligatoire)
+//   Parametre   : la valeur elle-même, datée par année (répond à « combien en 2025 ? »)
+//   Changement  : ce qui a bougé, quand, pourquoi (répond à « qu'est-ce qui a changé ? »)
+//   Verification: le journal de la veille (prouve que le contrôle tourne vraiment)
+//
+// Règle : aucune valeur n'existe sans source. La relation est obligatoire.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// Une page officielle. Tout paramètre pointe vers une source : pas de valeur orpheline.
+model Source {
+  id         String       @id
+  nom        String
+  url        String
+  nature     String?      // legifrance, service-public, urssaf, impots, economie
+  parametres Parametre[]
+  changements Changement[]
+
+  @@map("seuils_source")
+}
+
+/// Une valeur publiée. La clé métier est (categorie, code, annee) :
+/// une seule valeur par paramètre et par année, jamais deux qui se contredisent.
+model Parametre {
+  id         String   @id @default(cuid())
+  categorie  String   // seuil_micro_fiscal | tva_seuil_base | tva_seuil_majore | taux_cotisation | versement_liberatoire | taux_acre | drom_p1 | drom_p2 | drom_p3 | mayotte
+  code       String   // BIC_vente | BIC_service | BNC | cipav | meuble_classe | general | services
+  libelle    String
+  valeur     Float
+  unite      String   // EUR | POURCENT
+  annee      String   // "2026" | "2025" | "2023-2025"
+  regime     String   @default("normal") // normal | acre_avant_2026_07 | acre_depuis_2026_07 | drom_p1 | drom_p2 | drom_p3 | mayotte
+  note       String?
+
+  sourceId   String
+  source     Source   @relation(fields: [sourceId], references: [id])
+
+  verifieLe  DateTime @default(now())
+  creeLe     DateTime @default(now())
+  majLe      DateTime @updatedAt
+
+  @@unique([categorie, code, annee, regime])
+  @@index([categorie, annee])
+  @@map("seuils_parametre")
+}
+
+/// Un changement daté. C'est la valeur du projet : personne d'autre ne conserve ça.
+model Changement {
+  id        String   @id @default(cuid())
+  date      DateTime
+  statut    String   // APPLIQUE | A_VENIR | SANS_CHANGEMENT
+  champ     String
+  avant     Json
+  apres     Json
+  raison    String
+  impact    String?
+  baseLegale String?
+
+  sourceId  String
+  source    Source   @relation(fields: [sourceId], references: [id])
+
+  creeLe    DateTime @default(now())
+
+  @@index([date])
+  @@map("seuils_changement")
+}
+
+/// Le journal de la veille. Prouve que le contrôle tourne et ce qu'il a vu.
+/// Une erreur réseau y est notée comme INDISPONIBLE, jamais comme un changement.
+model Verification {
+  id          String   @id @default(cuid())
+  executeeLe  DateTime @default(now())
+  cible       String   // identifiant de la valeur surveillée
+  libelle     String
+  resultat    String   // CONFORME | ABSENTE | INDISPONIBLE
+  detail      String?
+  url         String
+
+  @@index([executeeLe])
+  @@index([cible, resultat])
+  @@map("seuils_verification")
+}

@@ -40,6 +40,17 @@
   {
     "date": "2026-01-01",
     "statut": "APPLIQUE",
+    "champ": "taux_cotisations_sociales.BNC",
+    "avant": 24.6,
+    "apres": 25.6,
+    "raison": "Décret du 30 mai 2024 — montée progressive du taux BNC pour financer la retraite complémentaire (21,1 % → 23,1 % → 24,6 % → 25,6 %)",
+    "impact": null,
+    "baseLegale": null,
+    "source": "economie.gouv"
+  },
+  {
+    "date": "2026-01-01",
+    "statut": "APPLIQUE",
     "champ": "seuils_micro_fiscal",
     "avant": {
       "BIC_vente": 188700,
@@ -57,13 +68,13 @@
   {
     "date": "2026-01-01",
     "statut": "APPLIQUE",
-    "champ": "taux_cotisations_sociales.BNC",
-    "avant": 24.6,
-    "apres": 25.6,
-    "raison": "Décret du 30 mai 2024 — montée progressive du taux BNC pour financer la retraite complémentaire (21,1 % → 23,1 % → 24,6 % → 25,6 %)",
+    "champ": "repartition_cotisations",
+    "avant": "CSG-CRDS = 29,70 % du taux global (BIC), 32,50 % (BNC)",
+    "apres": "CSG-CRDS = 23,60 % du taux global (BIC), 25,20 % (BNC)",
+    "raison": "Réforme de l'assiette sociale : la part contributive (retraite, maladie, IJ) augmente, la part non contributive (CSG-CRDS) diminue. Application à partir de la déclaration de CA de janvier 2026 (mensuel) ou du 1er trimestre 2026 (trimestriel).",
     "impact": null,
     "baseLegale": null,
-    "source": "economie.gouv"
+    "source": "urssaf-taux"
   },
   {
     "date": "2026-01-01",
@@ -75,17 +86,6 @@
     "impact": null,
     "baseLegale": null,
     "source": "service-public-tva"
-  },
-  {
-    "date": "2026-01-01",
-    "statut": "APPLIQUE",
-    "champ": "repartition_cotisations",
-    "avant": "CSG-CRDS = 29,70 % du taux global (BIC), 32,50 % (BNC)",
-    "apres": "CSG-CRDS = 23,60 % du taux global (BIC), 25,20 % (BNC)",
-    "raison": "Réforme de l'assiette sociale : la part contributive (retraite, maladie, IJ) augmente, la part non contributive (CSG-CRDS) diminue. Application à partir de la déclaration de CA de janvier 2026 (mensuel) ou du 1er trimestre 2026 (trimestriel).",
-    "impact": null,
-    "baseLegale": null,
-    "source": "urssaf-taux"
   },
   {
     "date": "2025-01-01",

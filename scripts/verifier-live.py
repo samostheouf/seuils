@@ -32,6 +32,7 @@ ENDPOINTS_TEXTE = [
     "/",
     "/api/v1/parametres.csv",
     "/api/v1/csv",
+    "/feed",
     "/sitemap.xml",
     "/robots.txt",
 ]

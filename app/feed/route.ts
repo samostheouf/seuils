@@ -1,4 +1,4 @@
-// app/feed.xml/route.ts — flux RSS 2.0 des 5 derniers changements.
+// app/feed/route.ts — flux RSS 2.0 des 5 derniers changements.
 //
 // Le flux reprend le pattern de l'API JSON : lireAvecRepli garantit qu'on
 // sert toujours un contenu correct, même si la base est injoignable (repli
@@ -6,7 +6,7 @@
 // link et guid par item.
 
 import { NextResponse } from 'next/server';
-import { lireAvecRepli, prisma } from '../../../lib/prisma';
+import { lireAvecRepli, prisma } from '../../lib/prisma';
 
 export const dynamic = 'force-dynamic';
 

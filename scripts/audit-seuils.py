@@ -40,7 +40,7 @@ ENDPOINTS_SEO = [
     "/",
     "/sitemap.xml",
     "/robots.txt",
-    "/feed.xml",
+    "/feed",
 ]
 
 
@@ -208,7 +208,7 @@ def check_performance(domaine):
 
 def check_rss(domaine):
     """1 pt: RSS feed en 200."""
-    code, body, _ = get(domaine + "/feed.xml")
+    code, body, _ = get(domaine + "/feed")
     if code == 200 and b"<rss" in body:
         return 1, ["RSS: OK"]
     return 0, [f"RSS: HTTP {code}"]

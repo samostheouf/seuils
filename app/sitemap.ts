@@ -15,5 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/api/v1/acre.json`, lastModified: maintenant, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE}/api/v1/drom.json`, lastModified: maintenant, changeFrequency: 'weekly', priority: 0.6 },
     { url: `${BASE}/api/v1/csv`, lastModified: maintenant, changeFrequency: 'weekly', priority: 0.6 },
+    { url: `${BASE}/feed`, lastModified: maintenant, changeFrequency: 'daily', priority: 0.5 },
   ];
 }

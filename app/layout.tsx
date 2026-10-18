@@ -26,10 +26,10 @@ const criticalCSS = `:root{--bg:#0b1220;--card:#131c2e;--line:#22304a;--txt:#e6e
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
-      <body>
+      <head>
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
-        {children}
-      </body>
+      </head>
+      <body>{children}</body>
     </html>
   );
 }

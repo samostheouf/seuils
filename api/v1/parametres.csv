@@ -1,0 +1,42 @@
+categorie,activite,code,valeur,unite,annee,source
+seuil_micro_fiscal,"Vente de marchandises, objets, fournitures, denrées à emporter ou à consommer sur place",BIC_vente,203100,EUR,2026,service-public-micro
+seuil_micro_fiscal,Prestations de services,BIC_service,83600,EUR,2026,service-public-micro
+seuil_micro_fiscal,Activité libérale (BNC),BNC,83600,EUR,2026,service-public-micro
+seuil_micro_fiscal,Prestations d'hébergement,hebergement,83600,EUR,2026,service-public-micro
+seuil_micro_fiscal,Meublé de tourisme classé / chambre d'hôtes,meuble_classe,83600,EUR,2026,service-public-micro
+seuil_micro_fiscal,Meublé de tourisme non classé,meuble_non_classe,15000,EUR,2026,service-public-micro
+tva_seuil_base,"Livraisons de biens, prestations de service, ventes à consommer sur place, hébergement",general,85000,EUR,2026,service-public-tva
+tva_seuil_majore,"Livraisons de biens, prestations de service, ventes à consommer sur place, hébergement",general,93500,EUR,2026,service-public-tva
+tva_seuil_base,Autres prestations de services,services,37500,EUR,2026,service-public-tva
+tva_seuil_majore,Autres prestations de services,services,41250,EUR,2026,service-public-tva
+tva_seuil_base,"Activités spécifiques des avocats, auteurs et artistes-interprètes",avocats_auteurs_specifique,50000,EUR,2026,service-public-tva
+tva_seuil_majore,"Activités spécifiques des avocats, auteurs et artistes-interprètes",avocats_auteurs_specifique,55000,EUR,2026,service-public-tva
+tva_seuil_base,"Autres activités des avocats, auteurs et artistes-interprètes",avocats_auteurs_autres,35000,EUR,2026,service-public-tva
+tva_seuil_majore,"Autres activités des avocats, auteurs et artistes-interprètes",avocats_auteurs_autres,38500,EUR,2026,service-public-tva
+taux_cotisation,Achat / revente de marchandises,BIC_vente,12.3,POURCENT,2026,economie.gouv
+taux_cotisation,Prestations de services commerciales et artisanales,BIC_service,21.2,POURCENT,2026,economie.gouv
+taux_cotisation,Autres prestations de services,BNC,25.6,POURCENT,2026,economie.gouv
+taux_cotisation,Professions libérales réglementées relevant de la Cipav,cipav,23.2,POURCENT,2026,economie.gouv
+taux_cotisation,Location de meublés de tourisme classés,meuble_classe,6.0,POURCENT,2026,economie.gouv
+versement_liberatoire,Vente de marchandises,BIC_vente,13.3,POURCENT,2026,service-public-cotisations
+versement_liberatoire,Prestations de services (BIC),BIC_service,22.9,POURCENT,2026,service-public-cotisations
+versement_liberatoire,Activité libérale non réglementée (BNC),BNC,27.8,POURCENT,2026,service-public-cotisations
+versement_liberatoire,Activité libérale réglementée (Cipav),cipav,25.4,POURCENT,2026,service-public-cotisations
+seuil_micro_fiscal_historique,BIC_vente,BIC_vente,176200,EUR,2022,service-public-revalorisation
+seuil_micro_fiscal_historique,BIC_service_et_BNC,BIC_service_et_BNC,72600,EUR,2022,service-public-revalorisation
+seuil_micro_fiscal_historique,BIC_vente,BIC_vente,188700,EUR,2023,service-public-revalorisation
+seuil_micro_fiscal_historique,BIC_service_et_BNC,BIC_service_et_BNC,77700,EUR,2023,service-public-revalorisation
+seuil_micro_fiscal_historique,meuble_tourisme_classe_et_chambres_hotes,meuble_tourisme_classe_et_chambres_hotes,188700,EUR,2023,service-public-revalorisation
+seuil_micro_fiscal_historique,meuble_tourisme_non_classe,meuble_tourisme_non_classe,77700,EUR,2023,service-public-revalorisation
+seuil_micro_fiscal_historique,BIC_vente,BIC_vente,188700,EUR,2024,impots-tableau-historique
+seuil_micro_fiscal_historique,BIC_service_et_BNC,BIC_service_et_BNC,77700,EUR,2024,impots-tableau-historique
+seuil_micro_fiscal_historique,meuble_tourisme_classe_et_chambres_hotes,meuble_tourisme_classe_et_chambres_hotes,188700,EUR,2024,impots-tableau-historique
+seuil_micro_fiscal_historique,meuble_tourisme_non_classe,meuble_tourisme_non_classe,77700,EUR,2024,impots-tableau-historique
+seuil_micro_fiscal_historique,BIC_vente,BIC_vente,188700,EUR,2025,impots-tableau-historique
+seuil_micro_fiscal_historique,BIC_service_et_BNC,BIC_service_et_BNC,77700,EUR,2025,impots-tableau-historique
+seuil_micro_fiscal_historique,meuble_tourisme_classe_et_chambres_hotes,meuble_tourisme_classe_et_chambres_hotes,77700,EUR,2025,impots-tableau-historique
+seuil_micro_fiscal_historique,meuble_tourisme_non_classe,meuble_tourisme_non_classe,15000,EUR,2025,impots-tableau-historique
+seuil_micro_fiscal_historique,BIC_vente,BIC_vente,203100,EUR,2026,impots-tableau-historique
+seuil_micro_fiscal_historique,BIC_service_et_BNC,BIC_service_et_BNC,83600,EUR,2026,impots-tableau-historique
+seuil_micro_fiscal_historique,meuble_tourisme_classe_et_chambres_hotes,meuble_tourisme_classe_et_chambres_hotes,83600,EUR,2026,impots-tableau-historique
+seuil_micro_fiscal_historique,meuble_tourisme_non_classe,meuble_tourisme_non_classe,15000,EUR,2026,impots-tableau-historique

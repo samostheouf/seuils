@@ -1,0 +1,91 @@
+{
+  "description": "Valeurs historiques des seuils du régime micro-entrepreneur. C'est la ressource que ce projet existe pour fournir : retrouver la valeur applicable à une année passée, avec sa source. Utile pour recalculer une situation, vérifier un dépassement, ou corriger un logiciel de facturation.",
+  "avertissement": "Ces valeurs sont celles publiées par les sources officielles citées. En cas de divergence, la source officielle fait foi.",
+  "sources": [
+    {
+      "id": "impots-tableau-historique",
+      "nom": "impots.gouv.fr — Si mon chiffre d'affaires augmente, dois-je changer de statut juridique ? (tableau des exercices 2023-2024, 2025, 2026)",
+      "url": "https://www.impots.gouv.fr/professionnel/questions/si-mon-chiffre-daffaires-augmente-est-ce-que-je-change-de-regime-juridique"
+    },
+    {
+      "id": "service-public-revalorisation",
+      "nom": "Service Public Entreprendre — Modification des seuils des régimes d'imposition de la micro-entreprise pour 2023, 2024 et 2025",
+      "url": "https://entreprendre.service-public.gouv.fr/actualites/A16230"
+    },
+    {
+      "id": "economie-depassement",
+      "nom": "Ministère de l'Économie — Que se passe-t-il quand le seuil de chiffre d'affaires est dépassé ?",
+      "url": "https://www.economie.gouv.fr/entreprises/gerer-sa-micro-entreprise/micro-entreprise-que-se-passe-t-il-quand-le-seuil-de-chiffre"
+    }
+  ],
+
+  "seuils_micro_fiscal": {
+    "unite": "EUR",
+    "nature": "chiffre d'affaires HT annuel",
+    "source": "impots-tableau-historique",
+    "par_annee": {
+      "2022": {
+        "BIC_vente": 176200,
+        "BIC_service_et_BNC": 72600,
+        "source": "service-public-revalorisation",
+        "note": "Valeurs 2022, avant la revalorisation triennale appliquée au 1er janvier 2023."
+      },
+      "2023": {
+        "BIC_vente": 188700,
+        "BIC_service_et_BNC": 77700,
+        "meuble_tourisme_classe_et_chambres_hotes": 188700,
+        "meuble_tourisme_non_classe": 77700,
+        "source": "service-public-revalorisation",
+        "note": "Revalorisation triennale posée par la loi de finances pour 2023. Ces valeurs s'appliquent aussi à 2024 et 2025 pour la plupart des activités."
+      },
+      "2024": {
+        "BIC_vente": 188700,
+        "BIC_service_et_BNC": 77700,
+        "meuble_tourisme_classe_et_chambres_hotes": 188700,
+        "meuble_tourisme_non_classe": 77700,
+        "source": "impots-tableau-historique"
+      },
+      "2025": {
+        "BIC_vente": 188700,
+        "BIC_service_et_BNC": 77700,
+        "meuble_tourisme_classe_et_chambres_hotes": 77700,
+        "meuble_tourisme_non_classe": 15000,
+        "source": "impots-tableau-historique",
+        "note": "Changement notable au 1er janvier 2025 : le seuil des meublés de tourisme classés et chambres d'hôtes passe de 188 700 € à 77 700 €, et celui des meublés non classés de 77 700 € à 15 000 €."
+      },
+      "2026": {
+        "BIC_vente": 203100,
+        "BIC_service_et_BNC": 83600,
+        "meuble_tourisme_classe_et_chambres_hotes": 83600,
+        "meuble_tourisme_non_classe": 15000,
+        "source": "impots-tableau-historique"
+      }
+    }
+  },
+
+  "seuils_tva_franchise": {
+    "unite": "EUR",
+    "nature": "chiffre d'affaires HT annuel",
+    "source": "economie-depassement",
+    "par_annee": {
+      "2023_2024_2025": {
+        "ventes_biens_hebergement": { "seuil_base": 91900, "seuil_majore": 101000 },
+        "prestations_de_services": { "seuil_base": 36800, "seuil_majore": 39100 },
+        "note": "Valeurs applicables pour les années 2023, 2024 et 2025.",
+        "source": "economie-depassement"
+      },
+      "2026": {
+        "ventes_biens_hebergement": { "seuil_base": 85000, "seuil_majore": 93500 },
+        "prestations_de_services": { "seuil_base": 37500, "seuil_majore": 41250 },
+        "note": "Seuils inchangés par rapport à ceux annoncés pour 2026 dans les paramètres courants.",
+        "source": "service-public-tva"
+      }
+    },
+    "attention": "Les seuils de TVA de 2023-2025 (36 800 / 39 100 et 91 900 / 101 000) diffèrent de ceux de 2026 (37 500 / 41 250 et 85 000 / 93 500). Ne pas mélanger les années lors d'un calcul."
+  },
+
+  "regle_de_passage": {
+    "contenu": "Le dépassement d'un seuil une seule année (N-1 ou N-2) ne fait pas perdre le régime micro-fiscal. Il faut un dépassement deux années consécutives (N-1 et N-2) pour en sortir au 1er janvier de l'année N.",
+    "source": "economie-depassement"
+  }
+}

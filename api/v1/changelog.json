@@ -31,6 +31,15 @@
       "source": "economie.gouv"
     },
     {
+      "date": "2025-01-01",
+      "statut": "APPLIQUE",
+      "champ": "seuils_micro_fiscal.meuble_tourisme",
+      "avant": { "meuble_classe_et_chambres_hotes": 188700, "meuble_non_classe": 77700 },
+      "apres": { "meuble_classe_et_chambres_hotes": 77700, "meuble_non_classe": 15000 },
+      "raison": "Modification des seuils applicables à la location de meublés de tourisme (revenus perçus à compter du 1er janvier 2025)",
+      "source": "impots-tableau-historique"
+    },
+    {
       "date": "2026-01-01",
       "statut": "APPLIQUE",
       "champ": "repartition_cotisations",

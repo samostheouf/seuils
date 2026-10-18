@@ -1,0 +1,247 @@
+{
+  "date_verification": "2026-10-18",
+  "objet": "Vérification des taux ACRE et DROM pour le projet Seuils",
+  "regle": "Aucune valeur inventée. Chaque valeur est tracée à sa source officielle. Si une valeur n'est pas trouvée, elle est marquée NON_TROUVE.",
+
+  "acre": {
+    "description": "Aide à la création ou à la reprise d'entreprise (ACRE) — exonération partielle de cotisations sociales la 1re année d'activité pour les micro-entrepreneurs.",
+    "question_tranche": "Le taux minoré est-il passé de 50 % à 75 % au 1er juillet 2026 ?",
+    "reponse": "OUI — confirmé par le décret n° 2026-69 du 6 février 2026 et le PDF Urssaf (Avril 2026).",
+    "statut": "CONFIRME",
+    "taux_minore": "75 % des taux habituels (exonération de 25 %)",
+    "date_application": "2026-07-01",
+    "duree": "Jusqu'à la fin du 3e trimestre civil suivant la date de début d'activité",
+    "base_legale": "Décret n° 2026-69 du 6 février 2026 — Article 2 remplace « 50 % » par « 75 % » pour les micro-entreprises à compter du 1er juillet 2026",
+    "source_principale": {
+      "nom": "Urssaf — Diaporama Auto-entrepreneur (Avril 2026)",
+      "url": "https://www.urssaf.fr/files/live/sites/urssaffr/files/autres/Diaporama_Auto-entrepreneur.pdf"
+    },
+    "source_secondaire": {
+      "nom": "Légifrance — Décret n° 2026-69 du 6 février 2026",
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053449085"
+    },
+    "taux_par_activite": [
+      {
+        "code": "BIC_vente",
+        "activite": "Vente de marchandises (BIC)",
+        "taux": 9.3,
+        "taux_avant_2026_07_01": 6.2,
+        "taux_plein_metropole": 12.3,
+        "date_application": "2026-07-01",
+        "statut": "CONFIRME",
+        "url": "https://www.urssaf.fr/files/live/sites/urssaffr/files/autres/Diaporama_Auto-entrepreneur.pdf"
+      },
+      {
+        "code": "BIC_service",
+        "activite": "Prestations de services commerciales ou artisanales (BIC)",
+        "taux": 15.9,
+        "taux_avant_2026_07_01": 10.6,
+        "taux_plein_metropole": 21.2,
+        "date_application": "2026-07-01",
+        "statut": "CONFIRME",
+        "url": "https://www.urssaf.fr/files/live/sites/urssaffr/files/autres/Diaporama_Auto-entrepreneur.pdf"
+      },
+      {
+        "code": "BNC",
+        "activite": "Autres prestations de services et professions libérales (BNC)",
+        "taux": 19.2,
+        "taux_avant_2026_07_01": 12.8,
+        "taux_plein_metropole": 25.6,
+        "date_application": "2026-07-01",
+        "statut": "CONFIRME",
+        "url": "https://www.urssaf.fr/files/live/sites/urssaffr/files/autres/Diaporama_Auto-entrepreneur.pdf"
+      },
+      {
+        "code": "cipav",
+        "activite": "Professions libérales relevant de la Cipav",
+        "taux": 17.4,
+        "taux_avant_2026_07_01": 13.4,
+        "taux_plein_metropole": 23.2,
+        "date_application": "2026-07-01",
+        "statut": "CONFIRME",
+        "url": "https://www.urssaf.fr/files/live/sites/urssaffr/files/autres/Diaporama_Auto-entrepreneur.pdf"
+      },
+      {
+        "code": "meuble_classe",
+        "activite": "Location de meublés de tourisme classés",
+        "taux": 4.5,
+        "taux_avant_2026_07_01": 3.0,
+        "taux_plein_metropole": 6.0,
+        "date_application": "2026-07-01",
+        "statut": "CONFIRME",
+        "url": "https://www.urssaf.fr/files/live/sites/urssaffr/files/autres/Diaporama_Auto-entrepreneur.pdf"
+      }
+    ],
+    "note_calcul": "Les taux ACRE post-01/07/2026 correspondent à 75 % des taux pleins : 12,3×0,75=9,225≈9,3 — 21,2×0,75=15,9 — 25,6×0,75=19,2 — 23,2×0,75=17,4 — 6,0×0,75=4,5.",
+    "a_verifier": {
+      "cumul_acre_drom": "NON_TROUVE — aucune source officielle trouvée précisant si l'ACRE (75 %) se cumule avec les taux réduits DROM ou si l'un exclut l'autre.",
+      "impact_cipav_taux_minimum": "La page Urssaf mentionne que pour les professions libérales relevant de la Cipav, le taux est « rehaussé en tenant compte du taux minimum (somme des taux CSG/CRDS et du taux de retraite complémentaire non exonérés par l'ACRE — article L.613-7 alinéa 1) ». Taux exact NON_TROUVÉ pour ce cas."
+    }
+  },
+
+  "drom": {
+    "description": "Taux réduits de cotisations sociales pour les micro-entrepreneurs dans les DROM (Guadeloupe, Martinique, Guyane, La Réunion, Saint-Barthélemy, Saint-Martin).",
+    "territoires_concernes": "Guadeloupe, Martinique, Guyane, La Réunion, Saint-Barthélemy, Saint-Martin",
+    "exclusion": "Mayotte — régime distinct (voir section mayotte ci-dessous)",
+    "statut": "CONFIRME",
+    "date_application": "Taux en vigueur au 1er janvier 2026 (sauf mention contraire)",
+    "duree": "Les taux réduits DROM s'appliquent pour une durée de 24 mois à compter de la date de début d'activité (note Urssaf). Cependant le tableau Urssaf montre 3 périodes sur 3 ans : 1/6 (7 premiers trimestres), 1/2 (trimestres 8 à fin 3e année), 2/3 (à partir de la 4e année).",
+    "base_legale": "Décret n° 2017-972 du 9 mai 2017",
+    "source_principale": {
+      "nom": "Autoentrepreneur Urssaf — L'essentiel du statut",
+      "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+    },
+    "fractions": {
+      "periode_1": {
+        "fraction": "1/6 des taux pleins de métropole",
+        "duree": "Jusqu'à la fin du 7e trimestre civil suivant celui de début d'activité",
+        "applicable_a": "Artisans, commerçants, professions libérales non réglementées"
+      },
+      "periode_1_cipav": {
+        "fraction": "1/3 des taux pleins de métropole",
+        "duree": "Jusqu'à la fin du 7e trimestre civil suivant celui de début d'activité",
+        "applicable_a": "Professions libérales réglementées (Cipav)"
+      },
+      "periode_2": {
+        "fraction": "1/2 des taux pleins de métropole",
+        "duree": "Du 8e trimestre civil suivant celui de début d'activité jusqu'à la fin de la 3e année civile d'activité",
+        "applicable_a": "Tous"
+      },
+      "periode_3": {
+        "fraction": "2/3 des taux pleins de métropole",
+        "duree": "À compter de la 4e année civile d'activité",
+        "applicable_a": "Tous"
+      }
+    },
+    "taux_par_activite": [
+      {
+        "code": "BIC_vente",
+        "activite": "Vente de marchandises (BIC)",
+        "groupe": "Artisan, commerçant et profession libérale non réglementée",
+        "periode_1": 2.1,
+        "periode_2": 6.2,
+        "periode_3": 8.2,
+        "date_taux": "2026-01-01",
+        "statut": "CONFIRME",
+        "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+      },
+      {
+        "code": "BIC_service",
+        "activite": "Prestations de services commerciales ou artisanales (BIC)",
+        "groupe": "Artisan, commerçant et profession libérale non réglementée",
+        "periode_1": 3.6,
+        "periode_2": 10.6,
+        "periode_3": 14.2,
+        "date_taux": "2026-01-01",
+        "statut": "CONFIRME",
+        "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+      },
+      {
+        "code": "BNC",
+        "activite": "Autres prestations de services (BNC)",
+        "groupe": "Artisan, commerçant et profession libérale non réglementée",
+        "periode_1": 4.3,
+        "periode_2": 12.8,
+        "periode_3": 17.1,
+        "date_taux": "2026-01-01",
+        "statut": "CONFIRME",
+        "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+      },
+      {
+        "code": "meuble_classe",
+        "activite": "Location de locaux d'habitation meublés de tourisme classés",
+        "groupe": "Artisan, commerçant et profession libérale non réglementée",
+        "periode_1": 1.0,
+        "periode_2": 3.0,
+        "periode_3": 4.0,
+        "date_taux": "2026-01-01",
+        "statut": "CONFIRME",
+        "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+      },
+      {
+        "code": "cipav",
+        "activite": "Professions libérales réglementées relevant de la Cipav (tous BIC/BNC)",
+        "groupe": "Profession libérale réglementée relevant de la Cipav",
+        "periode_1": 7.8,
+        "periode_2": 11.6,
+        "periode_3": 15.5,
+        "date_taux": "2024-07-01",
+        "date_note": "Taux affichés au 1er juillet 2024 sur la page Urssaf. Non re-vérifiés pour 2026.",
+        "statut": "CONFIRME",
+        "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+      },
+      {
+        "code": "cipav_meuble_classe",
+        "activite": "Location de locaux d'habitation meublés de tourisme classés (Cipav)",
+        "groupe": "Profession libérale réglementée relevant de la Cipav",
+        "periode_1": 2.0,
+        "periode_2": 3.0,
+        "periode_3": 4.0,
+        "date_taux": "2024-07-01",
+        "statut": "CONFIRME",
+        "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+      }
+    ],
+    "versement_liberatoire": {
+      "statut": "CONFIRME",
+      "contenu": "Les auto-entrepreneurs dans les DROM sont assujettis aux mêmes taux de versement libératoire que ceux de métropole.",
+      "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+    },
+    "a_verifier": {
+      "duree_exacte": "NON_TROUVE — la note Urssaf mentionne 24 mois mais le tableau montre 3 périodes sur 3 ans. La durée exacte de chaque période mériterait une clarification auprès de l'Urssaf.",
+      "cumul_acre_drom": "NON_TROUVE — aucune source officielle trouvée précisant si l'ACRE se cumule avec les taux réduits DROM."
+    }
+  },
+
+  "mayotte": {
+    "description": "Taux de cotisations spécifiques pour les auto-entrepreneurs à Mayotte. Régime distinct des DROM.",
+    "statut": "CONFIRME",
+    "source_principale": {
+      "nom": "Autoentrepreneur Urssaf — L'essentiel du statut",
+      "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+    },
+    "taux_par_activite": [
+      {
+        "code": "BIC_vente",
+        "activite": "Vente de marchandises (BIC)",
+        "taux": 5.3,
+        "groupe": "Artisan, commerçant et profession libérale non réglementée",
+        "date_taux": "NON_TROUVE — date non précisée sur la page Urssaf",
+        "statut": "CONFIRME",
+        "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+      },
+      {
+        "code": "BIC_service",
+        "activite": "Prestations de services artisanales et commerciales (BIC)",
+        "taux": 9.1,
+        "groupe": "Artisan, commerçant et profession libérale non réglementée",
+        "date_taux": "NON_TROUVE — date non précisée sur la page Urssaf",
+        "statut": "CONFIRME",
+        "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+      },
+      {
+        "code": "BNC",
+        "activite": "Autres prestations de services",
+        "taux": 12.0,
+        "groupe": "Artisan, commerçant et profession libérale non réglementée",
+        "date_taux": "NON_TROUVE — date non précisée sur la page Urssaf",
+        "statut": "CONFIRME",
+        "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+      },
+      {
+        "code": "cipav",
+        "activite": "Professions libérales réglementées relevant de la Cipav (BIC ou BNC)",
+        "taux": 16.6,
+        "groupe": "Profession libérale réglementée relevant de la Cipav",
+        "date_taux": "NON_TROUVE — date non précisée sur la page Urssaf",
+        "statut": "CONFIRME",
+        "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
+      }
+    ],
+    "note": "Le taux applicable inclut toutes les cotisations et contributions sociales relatives à la protection sociale obligatoire : maladie-maternité, invalidité-décès, autonomie ; allocations familiales ; retraite de base ; et pour la Cipav : retraite complémentaire obligatoire et invalidité-décès.",
+    "a_verifier": {
+      "seuils_2026": "NON_TROUVE — les seuils de chiffre d'affaires pour Mayotte (188 700 € / 77 700 €) mentionnés dans un document CSSM de 2023 n'ont pas été re-vérifiés pour 2026.",
+      "duree_exoneration": "NON_TROUVE — la durée exacte de l'exonération à Mayotte n'est pas précisée sur la page Urssaf consultée."
+    }
+  }
+}

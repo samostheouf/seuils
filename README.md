@@ -19,10 +19,13 @@ Résultat : tout développeur qui construit un outil de facturation, de comptabi
 | Ressource | Chemin | Contenu |
 |---|---|---|
 | API paramètres | `GET /api/v1/parametres.json` | Toutes les valeurs 2026, chacune avec l'identifiant de sa source |
-| API historique | `GET /api/v1/changelog.json` | Les changements datés, avec valeur avant / après et la raison |
+| API historique (valeurs) | `GET /api/v1/historique.json` | Les seuils de 2022 à 2026, année par année |
+| API historique (changements) | `GET /api/v1/changelog.json` | Les changements datés, avec valeur avant / après et la raison |
+| CSV | `GET /api/v1/parametres.csv` | Le même contenu à plat, pour un tableur |
 | Page humaine | `GET /` | Les mêmes chiffres, lisibles en trente secondes |
 
 Gratuit, sans clé, sans inscription, sans build : ce sont des fichiers statiques servis par Vercel.
+Données placées dans le domaine public (CC0) — réutilisables librement, y compris commercialement.
 
 ## Règles de qualité (non négociables)
 

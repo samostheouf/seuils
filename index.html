@@ -25,7 +25,9 @@
   "spatialCoverage": "FR",
   "distribution": [
     { "@type": "DataDownload", "contentUrl": "https://seuils-virid.vercel.app/api/v1/parametres.json", "encodingFormat": "application/json" },
-    { "@type": "DataDownload", "contentUrl": "https://seuils-virid.vercel.app/api/v1/changelog.json", "encodingFormat": "application/json" }
+    { "@type": "DataDownload", "contentUrl": "https://seuils-virid.vercel.app/api/v1/historique.json", "encodingFormat": "application/json" },
+    { "@type": "DataDownload", "contentUrl": "https://seuils-virid.vercel.app/api/v1/changelog.json", "encodingFormat": "application/json" },
+    { "@type": "DataDownload", "contentUrl": "https://seuils-virid.vercel.app/api/v1/parametres.csv", "encodingFormat": "text/csv" }
   ]
 }
 </script>
@@ -122,6 +124,21 @@
   <tr><td>Activité libérale réglementée (Cipav)</td><td class="num">25,4 %</td></tr>
 </table>
 
+<h2>Seuils des années passées</h2>
+<p class="note">Pour recalculer une situation, vérifier un dépassement ou corriger un logiciel de facturation. Ces valeurs viennent du tableau officiel par exercice de impots.gouv.fr.</p>
+<table>
+  <tr><th>Activité</th><th style="text-align:right">2022</th><th style="text-align:right">2023–2024</th><th style="text-align:right">2025</th><th style="text-align:right">2026</th></tr>
+  <tr><td>Vente de marchandises, hébergement</td><td class="num" style="color:var(--dim)">176 200 €</td><td class="num" style="color:var(--dim)">188 700 €</td><td class="num" style="color:var(--dim)">188 700 €</td><td class="num">203 100 €</td></tr>
+  <tr><td>Prestations de services, BNC</td><td class="num" style="color:var(--dim)">72 600 €</td><td class="num" style="color:var(--dim)">77 700 €</td><td class="num" style="color:var(--dim)">77 700 €</td><td class="num">83 600 €</td></tr>
+  <tr><td>Meublé de tourisme classé, chambres d'hôtes</td><td class="num" style="color:var(--dim)">—</td><td class="num" style="color:var(--dim)">188 700 €</td><td class="num warn">77 700 €</td><td class="num">83 600 €</td></tr>
+  <tr><td>Meublé de tourisme non classé</td><td class="num" style="color:var(--dim)">—</td><td class="num" style="color:var(--dim)">77 700 €</td><td class="num warn">15 000 €</td><td class="num">15 000 €</td></tr>
+</table>
+<div class="box warnbox">
+  <h3 class="warn">Deux changements faciles à manquer</h3>
+  <p class="note" style="margin:0 0 6px"><strong>1er janvier 2025</strong> — le seuil des meublés de tourisme classés et chambres d'hôtes passe de 188 700 € à <strong>77 700 €</strong>, et celui des meublés non classés de 77 700 € à <strong>15 000 €</strong>.</p>
+  <p class="note" style="margin:0"><strong>Seuils de TVA</strong> — ils étaient de 36 800 / 39 100 € (services) et 91 900 / 101 000 € (ventes) pour 2023–2025. Ils sont de 37 500 / 41 250 € et 85 000 / 93 500 € pour 2026. Ne pas mélanger les années dans un calcul.</p>
+</div>
+
 <h2>Historique des changements</h2>
 <p class="note">Ce que ce site conserve et que les autres ne conservent pas.</p>
 <div class="box">
@@ -135,12 +152,15 @@
 <h2>API JSON</h2>
 <p class="note">Gratuite, sans clé, sans inscription, sans limite annoncée.</p>
 <div class="box">
-  <p class="note" style="margin:0 0 8px"><code>GET /api/v1/parametres.json</code> — toutes les valeurs, avec sources et dates</p>
-  <p class="note" style="margin:0"><code>GET /api/v1/changelog.json</code> — l'historique daté</p>
+  <p class="note" style="margin:0 0 8px"><code>GET /api/v1/parametres.json</code> — toutes les valeurs 2026, avec sources et dates</p>
+  <p class="note" style="margin:0 0 8px"><code>GET /api/v1/historique.json</code> — les seuils des années passées (2022 → 2026)</p>
+  <p class="note" style="margin:0 0 8px"><code>GET /api/v1/changelog.json</code> — l'historique daté des changements</p>
+  <p class="note" style="margin:0"><code>GET /api/v1/parametres.csv</code> — le même contenu à plat, pour un tableur</p>
 </div>
 
 <footer>
   <p><strong>Sources officielles</strong> — ministère de l'Économie, Service Public Entreprendre (pages vérifiées les 01/01/2026 et 13/05/2026), Urssaf, impots.gouv.fr. Chaque valeur du fichier JSON porte l'identifiant de sa source.</p>
+  <p style="margin-top:10px"><strong>Données dans le domaine public</strong> (CC0) — réutilisables librement, y compris commercialement, sans attribution. Code source sous licence MIT : <a href="https://github.com/samostheouf/seuils">github.com/samostheouf/seuils</a></p>
   <p style="margin-top:10px">Ce site n'est affilié à aucune administration. Il ne remplace pas la lecture des textes officiels. Une valeur non vérifiée est signalée comme telle dans l'API — jamais présentée comme certaine.</p>
 </footer>
 

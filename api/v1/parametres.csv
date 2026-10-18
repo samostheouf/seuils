@@ -22,6 +22,21 @@ versement_liberatoire,Vente de marchandises,BIC_vente,13.3,POURCENT,2026,service
 versement_liberatoire,Prestations de services (BIC),BIC_service,22.9,POURCENT,2026,service-public-cotisations
 versement_liberatoire,Activité libérale non réglementée (BNC),BNC,27.8,POURCENT,2026,service-public-cotisations
 versement_liberatoire,Activité libérale réglementée (Cipav),cipav,25.4,POURCENT,2026,service-public-cotisations
+taux_acre_avant_2026_07_01,Vente de marchandises (BIC),BIC_vente,6.2,POURCENT,2026-H1,legifrance-decret-2026-69
+taux_acre_depuis_2026_07_01,Vente de marchandises (BIC),BIC_vente,9.3,POURCENT,2026-H2,legifrance-decret-2026-69
+taux_normal_reference,Vente de marchandises (BIC),BIC_vente,12.3,POURCENT,2026,economie.gouv
+taux_acre_avant_2026_07_01,Prestations de services commerciales ou artisanales (BIC),BIC_service,10.6,POURCENT,2026-H1,legifrance-decret-2026-69
+taux_acre_depuis_2026_07_01,Prestations de services commerciales ou artisanales (BIC),BIC_service,15.9,POURCENT,2026-H2,legifrance-decret-2026-69
+taux_normal_reference,Prestations de services commerciales ou artisanales (BIC),BIC_service,21.2,POURCENT,2026,economie.gouv
+taux_acre_avant_2026_07_01,Autres prestations de services / professions libérales non réglementées (BNC),BNC,12.8,POURCENT,2026-H1,legifrance-decret-2026-69
+taux_acre_depuis_2026_07_01,Autres prestations de services / professions libérales non réglementées (BNC),BNC,19.2,POURCENT,2026-H2,legifrance-decret-2026-69
+taux_normal_reference,Autres prestations de services / professions libérales non réglementées (BNC),BNC,25.6,POURCENT,2026,economie.gouv
+taux_acre_avant_2026_07_01,Professions libérales réglementées (Cipav),cipav,13.4,POURCENT,2026-H1,legifrance-decret-2026-69
+taux_acre_depuis_2026_07_01,Professions libérales réglementées (Cipav),cipav,17.4,POURCENT,2026-H2,legifrance-decret-2026-69
+taux_normal_reference,Professions libérales réglementées (Cipav),cipav,23.2,POURCENT,2026,economie.gouv
+taux_acre_avant_2026_07_01,Location de meublés de tourisme classés,meuble_classe,3.0,POURCENT,2026-H1,legifrance-decret-2026-69
+taux_acre_depuis_2026_07_01,Location de meublés de tourisme classés,meuble_classe,4.5,POURCENT,2026-H2,legifrance-decret-2026-69
+taux_normal_reference,Location de meublés de tourisme classés,meuble_classe,6.0,POURCENT,2026,economie.gouv
 seuil_micro_fiscal_historique,BIC_vente,BIC_vente,176200,EUR,2022,service-public-revalorisation
 seuil_micro_fiscal_historique,BIC_service_et_BNC,BIC_service_et_BNC,72600,EUR,2022,service-public-revalorisation
 seuil_micro_fiscal_historique,BIC_vente,BIC_vente,188700,EUR,2023,service-public-revalorisation
@@ -40,3 +55,7 @@ seuil_micro_fiscal_historique,BIC_vente,BIC_vente,203100,EUR,2026,impots-tableau
 seuil_micro_fiscal_historique,BIC_service_et_BNC,BIC_service_et_BNC,83600,EUR,2026,impots-tableau-historique
 seuil_micro_fiscal_historique,meuble_tourisme_classe_et_chambres_hotes,meuble_tourisme_classe_et_chambres_hotes,83600,EUR,2026,impots-tableau-historique
 seuil_micro_fiscal_historique,meuble_tourisme_non_classe,meuble_tourisme_non_classe,15000,EUR,2026,impots-tableau-historique
+tva_seuil_base_historique,ventes_biens_hebergement,ventes_biens_hebergement,91900,EUR,2023-2025,economie-depassement
+tva_seuil_majore_historique,ventes_biens_hebergement,ventes_biens_hebergement,101000,EUR,2023-2025,economie-depassement
+tva_seuil_base_historique,prestations_de_services,prestations_de_services,36800,EUR,2023-2025,economie-depassement
+tva_seuil_majore_historique,prestations_de_services,prestations_de_services,39100,EUR,2023-2025,economie-depassement

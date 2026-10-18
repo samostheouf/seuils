@@ -13,6 +13,16 @@
       "source": "impots-tva"
     },
     {
+      "date": "2026-07-01",
+      "statut": "APPLIQUE",
+      "champ": "acre",
+      "avant": { "taux_minore": "50 % du taux normal", "exoneration": "50 %", "BIC_vente": 6.2, "BIC_service": 10.6, "BNC": 12.8, "cipav": 13.4, "meuble_classe": 3.0 },
+      "apres": { "taux_minore": "75 % du taux normal", "exoneration": "25 %", "BIC_vente": 9.3, "BIC_service": 15.9, "BNC": 19.2, "cipav": 17.4, "meuble_classe": 4.5 },
+      "raison": "Décret n° 2026-69 du 6 février 2026 : le taux minoré de l'ACRE passe de 50 % à 75 % du taux normal pour les micro-entreprises. L'avantage est divisé par deux. Ne s'applique qu'aux créations ou reprises à compter du 1er juillet 2026 — une micro-entreprise créée avant conserve l'ancien régime.",
+      "impact": "Une micro-entreprise créée à partir du 1er juillet 2026 paie 25 % de cotisations en moins au lieu de 50 % pendant sa première période d'activité.",
+      "source": "legifrance-decret-2026-69"
+    },
+    {
       "date": "2026-01-01",
       "statut": "APPLIQUE",
       "champ": "taux_cotisations_sociales.BNC",

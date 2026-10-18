@@ -1,5 +1,5 @@
 {
-  "version": "2026.1",
+  "version": "2026.2",
   "mise_a_jour": "2026-10-18",
   "annee_reference": 2026,
   "description": "Paramètres officiels du régime micro-entrepreneur en France. Chaque valeur est tracée à sa source et à sa date de vérification.",
@@ -48,6 +48,26 @@
       "id": "economie-depassement",
       "nom": "Ministère de l'Économie — Que se passe-t-il quand le seuil de chiffre d'affaires est dépassé ?",
       "url": "https://www.economie.gouv.fr/entreprises/gerer-sa-micro-entreprise/micro-entreprise-que-se-passe-t-il-quand-le-seuil-de-chiffre"
+    },
+    {
+      "id": "legifrance-decret-2026-69",
+      "nom": "Légifrance — Décret n° 2026-69 du 6 février 2026 (taux d'exonération ACRE, art. 2 : 50 % remplacé par 75 %)",
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053449085"
+    },
+    {
+      "id": "service-public-acre",
+      "nom": "Service Public — Aide à la création ou à la reprise d'une entreprise (Acre), page vérifiée le 01/07/2026",
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F11677"
+    },
+    {
+      "id": "service-public-acre-actu",
+      "nom": "Service Public Entreprendre — Acre : du changement pour le dispositif d'aide",
+      "url": "https://entreprendre.service-public.gouv.fr/actualites/A18795"
+    },
+    {
+      "id": "urssaf-drom",
+      "nom": "Autoentrepreneur Urssaf — L'essentiel du statut (taux réduits DROM, décret n° 2017-972 du 9 mai 2017)",
+      "url": "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html"
     }
   ],
   "seuils_micro_fiscal": {
@@ -188,36 +208,59 @@
     ]
   },
   "acre": {
-    "nature": "exonération partielle de cotisations sociales la 1re année d'activité",
-    "source": "economie.gouv",
-    "valeurs_publiees": [
+    "nature": "Exonération partielle de cotisations sociales en début d'activité (Aide à la Création ou à la Reprise d'Entreprise).",
+    "regle_actuelle": "Le taux minoré est de 75 % du taux normal de cotisations, soit une exonération de 25 %.",
+    "regle_anterieure": "Le taux minoré était de 50 % du taux normal, soit une exonération de 50 %.",
+    "date_bascule": "2026-07-01",
+    "portee_de_la_bascule": "La bascule ne s'applique qu'aux créations ou reprises de micro-entreprise intervenant à compter du 1er juillet 2026. Une micro-entreprise créée avant cette date conserve l'ancien régime (50 %).",
+    "duree": "Jusqu'à la fin du 3e trimestre civil suivant la date de début d'activité déclarée.",
+    "condition_de_revenu": {
+      "revenu_inferieur_ou_egal_36045": "Exonération de 25 % (montant plein).",
+      "revenu_entre_36045_et_48060": "Exonération dégressive.",
+      "revenu_superieur_ou_egal_48060": "Aucune exonération."
+    },
+    "demande": "À déposer auprès de l'Urssaf au plus tard le 60e jour suivant la date d'ouverture de l'activité.",
+    "base_legale": "Décret n° 2026-69 du 6 février 2026 (article 2 : le taux « 50 % » est remplacé par « 75 % »), pris pour l'application de l'article 23 de la loi n° 2025-1403 du 30 décembre 2025 de financement de la sécurité sociale pour 2026.",
+    "source": "legifrance-decret-2026-69",
+    "valeurs": [
       {
         "activite": "Vente de marchandises (BIC)",
         "code": "BIC_vente",
-        "taux": 6.2
+        "taux_avant_2026_07_01": 6.2,
+        "taux_depuis_2026_07_01": 9.3,
+        "taux_normal": 12.3
       },
       {
-        "activite": "Prestations de services artisanales ou commerciales (BIC)",
+        "activite": "Prestations de services commerciales ou artisanales (BIC)",
         "code": "BIC_service",
-        "taux": 10.6
+        "taux_avant_2026_07_01": 10.6,
+        "taux_depuis_2026_07_01": 15.9,
+        "taux_normal": 21.2
       },
       {
-        "activite": "Autres prestations de services (BNC)",
+        "activite": "Autres prestations de services / professions libérales non réglementées (BNC)",
         "code": "BNC",
-        "taux": 12.8
+        "taux_avant_2026_07_01": 12.8,
+        "taux_depuis_2026_07_01": 19.2,
+        "taux_normal": 25.6
       },
       {
-        "activite": "Professions libérales relevant de la Cipav",
+        "activite": "Professions libérales réglementées (Cipav)",
         "code": "cipav",
-        "taux": 13.4
+        "taux_avant_2026_07_01": 13.4,
+        "taux_depuis_2026_07_01": 17.4,
+        "taux_normal": 23.2
+      },
+      {
+        "activite": "Location de meublés de tourisme classés",
+        "code": "meuble_classe",
+        "taux_avant_2026_07_01": 3.0,
+        "taux_depuis_2026_07_01": 4.5,
+        "taux_normal": 6.0
       }
     ],
-    "a_verifier": {
-      "objet": "Changement du taux minoré ACRE au 1er juillet 2026",
-      "contenu": "Selon la même source, à partir du 1er juillet 2026 le taux minoré passerait de 50 % à 75 % des taux habituels, ramenant l'exonération de 50 % à 25 %. Les taux ci-dessus (relevés comme taux publiés) pourraient donc ne plus être à jour.",
-      "statut": "NON VERIFIE — à confirmer sur la page Urssaf dédiée à l'ACRE avant toute utilisation.",
-      "source": "economie.gouv"
-    }
+    "note_calcul": "Les taux depuis le 01/07/2026 sont égaux à 75 % du taux normal, conformément à la règle fixée par le décret. Le taux BIC service (15,9 %) est en outre cité explicitement en exemple par Service Public.",
+    "a_verifier": null
   },
   "changement_a_venir": {
     "date": "2027-01-01",
@@ -231,5 +274,51 @@
     "historique": "/api/v1/historique.json",
     "changelog": "/api/v1/changelog.json",
     "csv": "/api/v1/parametres.csv"
-  }
+  },
+  "drom": {
+    "nature": "Taux réduits de cotisations sociales pour les micro-entrepreneurs exerçant dans les DROM.",
+    "territoires": [
+      "Guadeloupe",
+      "Martinique",
+      "Guyane",
+      "La Réunion",
+      "Saint-Barthélemy",
+      "Saint-Martin"
+    ],
+    "exclusion": "Mayotte relève d'un régime distinct.",
+    "base_legale": "Décret n° 2017-972 du 9 mai 2017",
+    "source": "urssaf-drom",
+    "periodes": [
+      {
+        "code": "periode_1",
+        "fraction": "1/6 du taux de métropole",
+        "duree": "Jusqu'à la fin du 7e trimestre civil suivant celui de début d'activité",
+        "sauf_cipav": "1/3 du taux de métropole pour les professions libérales réglementées (Cipav)"
+      },
+      {
+        "code": "periode_2",
+        "fraction": "1/2 du taux de métropole",
+        "duree": "Du 8e trimestre civil suivant celui de début d'activité jusqu'à la fin de la 3e année civile"
+      },
+      {
+        "code": "periode_3",
+        "fraction": "2/3 du taux de métropole",
+        "duree": "À compter de la 4e année civile d'activité"
+      }
+    ],
+    "note": "Les fractions s'appliquent aux taux de droit commun de métropole. Cette section est publiée avec une réserve : la source unique consultée est la page Urssaf « L'essentiel du statut » ; une vérification complémentaire sur la page Urssaf dédiée aux DROM est recommandée avant usage réglementaire.",
+    "statut": "A_VERIFIER_COMPLEMENT"
+  },
+  "historique_versions": [
+    {
+      "version": "2026.1",
+      "date": "2026-10-18",
+      "changement": "Version initiale."
+    },
+    {
+      "version": "2026.2",
+      "date": "2026-10-18",
+      "changement": "Correction majeure : les taux ACRE publies en 2026.1 (6,2 / 10,6 / 12,8 / 13,4 / 3,0) etaient perimes. Le decret n° 2026-69 du 6 fevrier 2026 a porte le taux minore de 50 % a 75 % du taux normal au 1er juillet 2026. Ajout des taux ACRE a jour, des conditions de revenu, et des taux reduits DROM."
+    }
+  ]
 }

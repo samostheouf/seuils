@@ -1,7 +1,5 @@
 // app/api/v1/acre.json/route.ts
 // Taux ACRE : réduction de cotisations pour les créateurs d'entreprise.
-// Depuis le 1er juillet 2026, le taux minoré est passé de 50 % à 75 % du taux normal
-// (décret n° 2026-69 du 6 février 2026).
 
 import { NextResponse } from 'next/server';
 import { prisma, lireAvecRepli } from '../../../../lib/prisma';
@@ -9,7 +7,7 @@ import { prisma, lireAvecRepli } from '../../../../lib/prisma';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  return lireAvecRepli(
+  const { donnees, origine } = await lireAvecRepli(
     async () => {
       const acre = await prisma.parametre.findMany({
         where: { categorie: 'taux_acre' },
@@ -34,6 +32,21 @@ export async function GET() {
         })),
       };
     },
-    'acre.json'
+    'parametres.json'
+  );
+
+  return NextResponse.json(
+    {
+      version_api: 'v1',
+      origine,
+      count: donnees?.count ?? 0,
+      acre: donnees?.acre ?? [],
+    },
+    {
+      headers: {
+        'Cache-Control': 'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400',
+        'Access-Control-Allow-Origin': '*',
+      },
+    }
   );
 }

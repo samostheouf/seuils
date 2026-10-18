@@ -1,6 +1,5 @@
 // app/api/v1/drom.json/route.ts
 // Taux de cotisations pour les DOM-TOM et Mayotte.
-// Source : tableau officiel Urssaf (ne pas recalculer, la source les publie).
 
 import { NextResponse } from 'next/server';
 import { prisma, lireAvecRepli } from '../../../../lib/prisma';
@@ -8,7 +7,7 @@ import { prisma, lireAvecRepli } from '../../../../lib/prisma';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  return lireAvecRepli(
+  const { donnees, origine } = await lireAvecRepli(
     async () => {
       const drom = await prisma.parametre.findMany({
         where: {
@@ -37,6 +36,21 @@ export async function GET() {
         })),
       };
     },
-    'drom.json'
+    'parametres.json'
+  );
+
+  return NextResponse.json(
+    {
+      version_api: 'v1',
+      origine,
+      count: donnees?.count ?? 0,
+      drom: donnees?.drom ?? [],
+    },
+    {
+      headers: {
+        'Cache-Control': 'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400',
+        'Access-Control-Allow-Origin': '*',
+      },
+    }
   );
 }

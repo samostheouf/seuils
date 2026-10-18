@@ -212,7 +212,7 @@ def format_rapport(rapport: dict, verbose: bool = False) -> str:
             lignes.append(f"   Taille: {m['content_length']:,} bytes")
             lignes.append(f"   Cache-Control: {m['cache_control'] or '(absent)'}")
             lignes.append(f"   x-vercel-id: {m['x_vercel_id'] or '(absent)'}")
-            if m["dns"] >= 0:
+            if m["dns"] > 0:
                 lignes.append(f"   DNS: {m['dns']:.0f}ms | Connect: {m['connect']:.0f}ms | TLS: {m['tls']:.0f}ms")
         lignes.append("")
 

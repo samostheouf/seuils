@@ -2,7 +2,7 @@
 // L'historique date des changements : ce que ce projet conserve et que les autres ne conservent pas.
 
 import { NextResponse } from 'next/server';
-import { chargerChangements, VERSION_API } from '@/lib/serialisation';
+import { chargerChangements, VERSION_API } from '../../../../lib/serialisation';
 
 export const dynamic = 'force-dynamic';
 

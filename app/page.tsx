@@ -2,7 +2,7 @@
 // Tout vient de la base (ou du snapshot si la base est injoignable) :
 // aucune valeur n'est ecrite en dur dans ce fichier.
 
-import { chargerParametres, chargerChangements, chargerSources, chargerMeta, type Parametre } from '@/lib/serialisation';
+import { chargerParametres, chargerChangements, chargerSources, chargerMeta, type Parametre } from '../lib/serialisation';
 
 export const dynamic = 'force-dynamic';
 

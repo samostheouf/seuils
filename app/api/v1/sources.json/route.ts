@@ -2,7 +2,7 @@
 // Les pages officielles d'ou vient chaque valeur.
 
 import { NextResponse } from 'next/server';
-import { chargerSources, VERSION_API } from '@/lib/serialisation';
+import { chargerSources, VERSION_API } from '../../../../lib/serialisation';
 
 export const dynamic = 'force-dynamic';
 

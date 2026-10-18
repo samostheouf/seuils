@@ -3,7 +3,7 @@
 // Ne renvoie jamais d'erreur : en cas de panne de la base, sert le snapshot.
 
 import { NextResponse } from 'next/server';
-import { chargerParametres, chargerSources, chargerMeta, VERSION_API } from '@/lib/serialisation';
+import { chargerParametres, chargerSources, chargerMeta, VERSION_API } from '../../../../lib/serialisation';
 
 export const dynamic = 'force-dynamic';
 

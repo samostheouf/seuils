@@ -59,26 +59,42 @@ def main():
             echecs.append(f"{chemin} : {type(e).__name__}")
 
     version_servie = None
+    nb_parametres_servis = None
     for chemin in ENDPOINTS_JSON:
         try:
             code, corps = recuperer(domaine + chemin)
             donnees = json.loads(corps)
             print(f"  OK    {code}  {chemin}  (JSON valide, {len(corps)} o)")
             if chemin.endswith("parametres.json"):
-                version_servie = donnees.get("version")
+                version_servie = donnees.get("version_donnees")
+                nb_parametres_servis = len(donnees.get("parametres", []))
         except json.JSONDecodeError as e:
             echecs.append(f"{chemin} : JSON invalide ({e})")
         except Exception as e:
             echecs.append(f"{chemin} : {type(e).__name__}")
 
     # La version servie doit correspondre au depot local.
-    local = os.path.join(RACINE, "data", "parametres.json")
-    with open(local, encoding="utf-8") as f:
-        version_locale = json.load(f).get("version")
-    if version_servie and version_locale and version_servie != version_locale:
-        echecs.append(f"version servie {version_servie} != version locale {version_locale} — deploiement non propage ?")
+    # Attention : un endpoint en 404 renvoie version_servie = None. Ne PAS conclure
+    # « OK » dans ce cas — c'est precisement le faux positif qui a masque un 404.
+    # On compare le NOMBRE de valeurs, pas un numero de version : l'API renvoie la
+    # date de derniere modification en base, le depot un numero de version — ils ne
+    # sont pas comparables. Le compte, lui, prouve que le deploiement sert bien les
+    # donnees courantes.
+    snap = os.path.join(RACINE, "snapshot", "parametres.json")
+    attendu = None
+    if os.path.exists(snap):
+        with open(snap, encoding="utf-8") as f:
+            attendu = len(json.load(f))
+
+    if version_servie is None:
+        echecs.append("version servie illisible — un endpoint JSON n'a pas repondu correctement")
+    elif attendu is not None and nb_parametres_servis != attendu:
+        echecs.append(
+            f"l'API sert {nb_parametres_servis} valeurs, le snapshot en contient {attendu} "
+            "— deploiement non propage ?"
+        )
     else:
-        print(f"  OK    version servie = version locale ({version_locale})")
+        print(f"  OK    {nb_parametres_servis} valeurs servies = {attendu} dans le snapshot")
 
     print()
     if echecs:

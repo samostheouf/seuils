@@ -14,18 +14,45 @@ Les seuils, taux de cotisations et seuils de TVA de la micro-entreprise existent
 
 Résultat : tout développeur qui construit un outil de facturation, de comptabilité ou de simulation pour les indépendants français doit recopier ces valeurs à la main, et les laisse périmer.
 
+## Architecture
+
+```
+                    Prisma Postgres (db.prisma.io)
+                    = SOURCE DE VÉRITÉ UNIQUE
+                    ┌──────────────────────────────┐
+                    │ Source       pages officielles│
+                    │ Parametre    valeur + année   │
+                    │ Changement   avant/après/date │
+                    │ Verification journal de veille│
+                    └───────────────┬──────────────┘
+                                    │
+              ┌─────────────────────┼─────────────────────┐
+              │                     │                     │
+        seed (pg, Termux)    Next.js API (Vercel)   snapshot/ committé
+        depuis data/*.json   lit la base en direct   filet si la base tombe
+```
+
+**Pourquoi cette forme.** Les moteurs natifs de Prisma ne tournent pas sur Termux/Android.
+Le schéma est donc appliqué en SQL via `pg` (pur JavaScript) depuis Termux, et
+`prisma generate` tourne au build **sur Vercel** (Linux x86_64), pas en local.
+
+**La garantie anti-panne.** L'API lit la base. Si la base est injoignable, elle sert le
+dernier snapshot committé — qui est **toujours généré depuis la base**, jamais édité à la
+main. Résultat : une panne de base donne un site dégradé mais juste, jamais faux, jamais une 500.
+
 ## Ce que ce projet fournit
 
 | Ressource | Chemin | Contenu |
 |---|---|---|
-| API paramètres | `GET /api/v1/parametres.json` | Toutes les valeurs 2026, chacune avec l'identifiant de sa source |
-| API historique (valeurs) | `GET /api/v1/historique.json` | Les seuils de 2022 à 2026, année par année |
-| API historique (changements) | `GET /api/v1/changelog.json` | Les changements datés, avec valeur avant / après et la raison |
+| API paramètres | `GET /api/v1/parametres.json` | Toutes les valeurs, chacune avec sa source |
+| API changements | `GET /api/v1/changelog.json` | Les changements datés (avant / après / raison) |
+| API sources | `GET /api/v1/sources.json` | Les pages officielles |
 | CSV | `GET /api/v1/parametres.csv` | Le même contenu à plat, pour un tableur |
+| État du service | `GET /api/health` | Base joignable ? combien de valeurs ? |
 | Page humaine | `GET /` | Les mêmes chiffres, lisibles en trente secondes |
 
-Gratuit, sans clé, sans inscription, sans build : ce sont des fichiers statiques servis par Vercel.
-Données placées dans le domaine public (CC0) — réutilisables librement, y compris commercialement.
+Gratuit, sans clé, sans inscription. Données dans le domaine public (CC0) — réutilisables
+librement, y compris commercialement.
 
 ## Règles de qualité (non négociables)
 

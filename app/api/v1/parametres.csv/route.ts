@@ -3,7 +3,7 @@
 // Le CSV est genere a la volee depuis la base : il ne peut pas diverger du JSON.
 
 import { NextResponse } from 'next/server';
-import { chargerParametres } from '@/lib/serialisation';
+import { chargerParametres } from '../../../../lib/serialisation';
 
 export const dynamic = 'force-dynamic';
 

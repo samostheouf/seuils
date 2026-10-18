@@ -6,8 +6,7 @@
 // link et guid par item.
 
 import { NextResponse } from 'next/server';
-import { lireAvecRepli } from '../../../lib/prisma';
-import { prisma } from '../../../lib/prisma';
+import { lireAvecRepli, prisma } from '../../../lib/prisma';
 
 export const dynamic = 'force-dynamic';
 

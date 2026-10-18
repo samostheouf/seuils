@@ -7,7 +7,6 @@ import { chargerParametres, chargerSources, chargerMeta, VERSION_API } from '../
 
 // ISR : les réponses API sont mises en cache par le CDN Vercel (s-maxage=3600).
 export const revalidate = 3600;
-export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const [parametres, sources, meta] = await Promise.all([

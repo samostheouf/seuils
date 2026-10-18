@@ -4,11 +4,11 @@
 
 import { chargerParametres, chargerChangements, chargerSources, chargerMeta, type Parametre } from '../lib/serialisation';
 
-// ISR avec revalidate : la page est générée une fois puis servie depuis le edge cache Vercel.
+// ISR : la page est générée à la première requête puis servie depuis le edge cache Vercel.
 // revalidate=3600 → cache 1h, régénération en arrière-plan sans bloquer les visiteurs.
 // C'est LE levier principal contre le cold start : après le 1er hit, TTFB ~50ms.
+// NOTE : ne PAS ajouter force-dynamic ici — cela annule revalidate.
 export const revalidate = 3600;
-export const dynamic = 'force-dynamic'; // pas de static prerender, ISR gère le cache
 
 const euro = (n: number) => n.toLocaleString('fr-FR') + ' €';
 const pct = (n: number) => n.toLocaleString('fr-FR', { minimumFractionDigits: 1 }) + ' %';

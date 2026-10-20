@@ -13,6 +13,20 @@
   {
     "date": "2026-10-20",
     "statut": "AJOUT",
+    "champ": "acre.cipav_meuble_classe",
+    "avant": "absente du jeu de donnees",
+    "apres": {
+      "taux_avant_2026_07_01": 3.5,
+      "taux_depuis_2026_07_01": 4.5
+    },
+    "raison": "Le tableau officiel Urssaf publie une categorie que ce jeu de donnees omettait : location de meubles de tourisme classes relevant de la Cipav, a 3,5 % avant le 1er juillet 2026 et 4,5 % a compter de cette date. Source : diaporama Urssaf et economie.gouv.fr.",
+    "impact": "Un micro-entrepreneur loueur de meuble classe relevant de la Cipav avait un taux ACRE inconnu de cette API.",
+    "baseLegale": null,
+    "source": "urssaf-acre"
+  },
+  {
+    "date": "2026-10-20",
+    "statut": "AJOUT",
     "champ": "versement_liberatoire.seuil_revenu",
     "avant": "absent",
     "apres": {
@@ -53,17 +67,6 @@
   },
   {
     "date": "2026-01-01",
-    "statut": "APPLIQUE",
-    "champ": "repartition_cotisations",
-    "avant": "CSG-CRDS = 29,70 % du taux global (BIC), 32,50 % (BNC)",
-    "apres": "CSG-CRDS = 23,60 % du taux global (BIC), 25,20 % (BNC)",
-    "raison": "Réforme de l'assiette sociale : la part contributive (retraite, maladie, IJ) augmente, la part non contributive (CSG-CRDS) diminue. Application à partir de la déclaration de CA de janvier 2026 (mensuel) ou du 1er trimestre 2026 (trimestriel).",
-    "impact": null,
-    "baseLegale": null,
-    "source": "urssaf-taux"
-  },
-  {
-    "date": "2026-01-01",
     "statut": "SANS_CHANGEMENT",
     "champ": "seuils_tva_franchise",
     "avant": "inchangés",
@@ -72,6 +75,22 @@
     "impact": null,
     "baseLegale": null,
     "source": "service-public-tva"
+  },
+  {
+    "date": "2026-01-01",
+    "statut": "APPLIQUE",
+    "champ": "mayotte.recouvrement_cotisations",
+    "avant": {
+      "suspension": "1er janvier 2025 au 31 decembre 2025"
+    },
+    "apres": {
+      "reprise": "1er janvier 2026",
+      "abandon_possible": "demande avant le 31 mai 2026"
+    },
+    "raison": "Suite au cyclone Chido : suspension du recouvrement des cotisations et contributions sociales (prolongee jusqu'au 31 decembre 2025 pour les travailleurs independants et auto-entrepreneurs), reprise au 1er janvier 2026. La loi d'urgence pour Mayotte prevoit un abandon total ou partiel des creances, sur demande avant le 31 mai 2026.",
+    "impact": "Les taux Mayotte publies (5,3 / 9,1 / 12 / 16,6) ne changent pas : la suspension etait un report de paiement, pas une modification de taux.",
+    "baseLegale": null,
+    "source": "cssm-mayotte"
   },
   {
     "date": "2026-01-01",
@@ -102,21 +121,15 @@
     "source": "economie.gouv"
   },
   {
-    "date": "2025-01-01",
+    "date": "2026-01-01",
     "statut": "APPLIQUE",
-    "champ": "seuils_micro_fiscal.meuble_tourisme",
-    "avant": {
-      "meuble_non_classe": 77700,
-      "meuble_classe_et_chambres_hotes": 188700
-    },
-    "apres": {
-      "meuble_non_classe": 15000,
-      "meuble_classe_et_chambres_hotes": 77700
-    },
-    "raison": "Modification des seuils applicables à la location de meublés de tourisme (revenus perçus à compter du 1er janvier 2025)",
+    "champ": "repartition_cotisations",
+    "avant": "CSG-CRDS = 29,70 % du taux global (BIC), 32,50 % (BNC)",
+    "apres": "CSG-CRDS = 23,60 % du taux global (BIC), 25,20 % (BNC)",
+    "raison": "Réforme de l'assiette sociale : la part contributive (retraite, maladie, IJ) augmente, la part non contributive (CSG-CRDS) diminue. Application à partir de la déclaration de CA de janvier 2026 (mensuel) ou du 1er trimestre 2026 (trimestriel).",
     "impact": null,
     "baseLegale": null,
-    "source": "impots-tableau-historique"
+    "source": "urssaf-taux"
   },
   {
     "date": "2025-01-01",
@@ -146,5 +159,22 @@
     "impact": "Les seuils 2024 ne s'appliquent plus a 2025 : 91 900 / 101 000 et 36 800 / 39 100 ne doivent pas etre attribues a 2025, qui vaut 85 000 / 93 500 et 37 500 / 41 250.",
     "baseLegale": null,
     "source": "service-public-tva-2025"
+  },
+  {
+    "date": "2025-01-01",
+    "statut": "APPLIQUE",
+    "champ": "seuils_micro_fiscal.meuble_tourisme",
+    "avant": {
+      "meuble_non_classe": 77700,
+      "meuble_classe_et_chambres_hotes": 188700
+    },
+    "apres": {
+      "meuble_non_classe": 15000,
+      "meuble_classe_et_chambres_hotes": 77700
+    },
+    "raison": "Modification des seuils applicables à la location de meublés de tourisme (revenus perçus à compter du 1er janvier 2025)",
+    "impact": null,
+    "baseLegale": null,
+    "source": "impots-tableau-historique"
   }
 ]

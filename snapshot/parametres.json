@@ -595,6 +595,28 @@
   },
   {
     "categorie": "taux_acre",
+    "code": "cipav_meuble_classe",
+    "libelle": "Location de meublés de tourisme classés relevant de la Cipav",
+    "valeur": 3.5,
+    "unite": "POURCENT",
+    "annee": "2026",
+    "regime": "acre_avant_2026_07",
+    "note": null,
+    "source": "legifrance-decret-2026-69"
+  },
+  {
+    "categorie": "taux_acre",
+    "code": "cipav_meuble_classe",
+    "libelle": "Location de meublés de tourisme classés relevant de la Cipav",
+    "valeur": 4.5,
+    "unite": "POURCENT",
+    "annee": "2026",
+    "regime": "acre_depuis_2026_07",
+    "note": null,
+    "source": "legifrance-decret-2026-69"
+  },
+  {
+    "categorie": "taux_acre",
     "code": "meuble_classe",
     "libelle": "Location de meublés de tourisme classés",
     "valeur": 3,
@@ -708,6 +730,17 @@
     "code": "cipav",
     "libelle": "Professions libérales réglementées (Cipav)",
     "valeur": 23.2,
+    "unite": "POURCENT",
+    "annee": "2026",
+    "regime": "normal",
+    "note": null,
+    "source": "economie.gouv"
+  },
+  {
+    "categorie": "taux_normal_reference",
+    "code": "cipav_meuble_classe",
+    "libelle": "Location de meublés de tourisme classés relevant de la Cipav",
+    "valeur": 6,
     "unite": "POURCENT",
     "annee": "2026",
     "regime": "normal",

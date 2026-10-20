@@ -127,6 +127,16 @@ try {
     vfl.length === 1 && Number(vfl[0].valeur) === 29315,
     vfl.length ? String(vfl[0].valeur) : 'absent');
 
+  // La categorie ACRE ajoutee en 2026.5 : meubles de tourisme classes relevant de la Cipav.
+  // Le taux est 3,5 % avant le 1er juillet 2026, 4,5 % a compter de cette date.
+  const cipavMeuble = await c(`select valeur, regime from seuils_parametre
+                               where categorie='taux_acre' and code='cipav_meuble_classe'`);
+  controle('ACRE cipav meuble classe : 2 regimes publies', cipavMeuble.length === 2,
+    `trouve ${cipavMeuble.length}`);
+  const cmApres = cipavMeuble.find((r) => r.regime === 'acre_depuis_2026_07');
+  controle('ACRE cipav meuble classe = 4,5 %', !!cmApres && Number(cmApres.valeur) === 4.5,
+    cmApres ? String(cmApres.valeur) : 'absent');
+
   // La table de verification doit exister meme si elle est vide.
   await c('select count(*) from seuils_verification');
   controle('table de verification interrogeable', true);

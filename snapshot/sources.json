@@ -1,5 +1,11 @@
 [
   {
+    "id": "cssm-mayotte",
+    "nom": "CSSM — Accompagnement des indépendants et auto-entrepreneurs à Mayotte (reprise du recouvrement, abandon de créances)",
+    "url": "https://www.cssm.fr/actualite/accompagnement-des-independants-et-des-auto-entrepreneurs-a-mayotte",
+    "nature": "cssm"
+  },
+  {
     "id": "economie-depassement",
     "nom": "Ministère de l'Économie — Que se passe-t-il quand le seuil de chiffre d'affaires est dépassé ?",
     "url": "https://www.economie.gouv.fr/entreprises/gerer-sa-micro-entreprise/micro-entreprise-que-se-passe-t-il-quand-le-seuil-de-chiffre",
@@ -82,6 +88,12 @@
     "nom": "Service Public Entreprendre — Franchise en base de TVA : seuils applicables depuis le 1er janvier 2025 (publié le 05/11/2025, avec colonne comparative 2024)",
     "url": "https://entreprendre.service-public.gouv.fr/actualites/A17995",
     "nature": "service"
+  },
+  {
+    "id": "urssaf-acre",
+    "nom": "Urssaf — ACRE : taux de cotisations réduits par activité (diaporama officiel)",
+    "url": "https://www.urssaf.fr/files/live/sites/urssaffr/files/autres/Diaporama_Auto-entrepreneur.pdf",
+    "nature": "urssaf"
   },
   {
     "id": "urssaf-drom",

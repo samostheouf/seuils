@@ -1,5 +1,5 @@
 {
-  "version": "2026.4",
+  "version": "2026.5",
   "mise_a_jour": "2026-10-20",
   "annee_reference": 2026,
   "description": "Paramètres officiels du régime micro-entrepreneur en France. Chaque valeur est tracée à sa source et à sa date de vérification.",
@@ -73,6 +73,16 @@
       "id": "impots-versement-liberatoire",
       "url": "https://www.impots.gouv.fr/professionnel/le-versement-liberatoire",
       "nom": "impots.gouv.fr — Le versement liberatoire : conditions, seuils de revenu et taux"
+    },
+    {
+      "id": "urssaf-acre",
+      "nom": "Urssaf — ACRE : taux de cotisations réduits par activité (diaporama officiel)",
+      "url": "https://www.urssaf.fr/files/live/sites/urssaffr/files/autres/Diaporama_Auto-entrepreneur.pdf"
+    },
+    {
+      "id": "cssm-mayotte",
+      "nom": "CSSM — Accompagnement des indépendants et auto-entrepreneurs à Mayotte (reprise du recouvrement, abandon de créances)",
+      "url": "https://www.cssm.fr/actualite/accompagnement-des-independants-et-des-auto-entrepreneurs-a-mayotte"
     }
   ],
   "seuils_micro_fiscal": {
@@ -288,6 +298,14 @@
         "taux_avant_2026_07_01": 3.0,
         "taux_depuis_2026_07_01": 4.5,
         "taux_normal": 6.0
+      },
+      {
+        "activite": "Location de meublés de tourisme classés relevant de la Cipav",
+        "code": "cipav_meuble_classe",
+        "taux_avant_2026_07_01": 3.5,
+        "taux_depuis_2026_07_01": 4.5,
+        "taux_normal": 6.0,
+        "note": "Categorie publiee par l'Urssaf (3,5 % avant le 1er juillet 2026, 4,5 % a compter du 1er juillet 2026) mais absente de la version precedente de ce jeu de donnees."
       }
     ],
     "note_calcul": "Les taux depuis le 01/07/2026 sont égaux à 75 % du taux normal, conformément à la règle fixée par le décret. Le taux BIC service (15,9 %) est en outre cité explicitement en exemple par Service Public.",
@@ -414,13 +432,18 @@
       "version": "2026.4",
       "date": "2026-10-20",
       "changement": "Correctif : seuils de franchise TVA 2025 separes des valeurs 2024 (85 000 / 93 500 et 37 500 / 41 250 des 2025, confirmes par Service Public A17995 et la loi n° 2025-1044). Ajout du seuil de revenu ouvrant droit au versement liberatoire (29 315 EUR/part pour l'option 2026). Ajout de la periode de tolerance de la mention TVA (jusqu'au 30 juin 2028). Lacune DROM Cipav 2026 resilee : taux verifies (7,80 / 11,60 / 15,50)."
+    },
+    {
+      "version": "2026.5",
+      "date": "2026-10-20",
+      "changement": "Correctifs : categorie ACRE manquante ajoutee (meubles de tourisme classes relevant de la Cipav : 3,5 % puis 4,5 %). Note Mayotte corrigee et sourcee officiellement (suspension jusqu'au 31/12/2025, reprise au 01/01/2026, abandon possible jusqu'au 31/05/2026) — la mention « sans terme annonce » etait fausse."
     }
   ],
   "mayotte": {
     "nature": "Mayotte relève d'un régime distinct des DROM.",
     "source": "urssaf-drom",
     "statut": "CONFIRME",
-    "note": "Taux publiés par la source Urssaf. Par ailleurs, une exonération de cotisations est rapportée pour Mayotte après le cyclone Chido, sans terme annoncé.",
+    "note": "Taux publies par la source Urssaf. Suite au cyclone Chido : suspension du recouvrement des cotisations (1er janvier 2025, prolongee jusqu'au 31 decembre 2025 pour les travailleurs independants), reprise au 1er janvier 2026. Mesure d'abandon total ou partiel des cotisations et contributions, demande a deposer avant le 31 mai 2026. Source : CSSM / Urssaf, communique et page d'accompagnement.",
     "taux": [
       {
         "code": "BIC_vente",
@@ -442,7 +465,16 @@
         "activite": "Professions libérales réglementées relevant de la Cipav",
         "taux": 16.6
       }
-    ]
+    ],
+    "evenement": {
+      "objet": "Suspension puis reprise du recouvrement des cotisations apres le cyclone Chido",
+      "suspension": "1er janvier 2025 au 31 decembre 2025 (travailleurs independants et auto-entrepreneurs)",
+      "reprise": "1er janvier 2026",
+      "mesure": "Abandon total ou partiel des cotisations et contributions, sur demande",
+      "echeance_demande": "31 mai 2026",
+      "source": "https://www.cssm.fr/actualite/accompagnement-des-independants-et-des-auto-entrepreneurs-a-mayotte",
+      "note": "Les taux Mayotte publies (5,3 / 9,1 / 12 / 16,6) restent les taux en vigueur ; la suspension etait un report de paiement, pas une modification de taux."
+    }
   },
   "lacunes_connues": [
     {

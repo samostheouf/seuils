@@ -26,6 +26,19 @@
       "source": "impots-versement-liberatoire"
     },
     {
+      "date": "2026-10-20",
+      "statut": "AJOUT",
+      "champ": "acre.cipav_meuble_classe",
+      "avant": "absente du jeu de donnees",
+      "apres": {
+        "taux_avant_2026_07_01": 3.5,
+        "taux_depuis_2026_07_01": 4.5
+      },
+      "raison": "Le tableau officiel Urssaf publie une categorie que ce jeu de donnees omettait : location de meubles de tourisme classes relevant de la Cipav, a 3,5 % avant le 1er juillet 2026 et 4,5 % a compter de cette date. Source : diaporama Urssaf et economie.gouv.fr.",
+      "impact": "Un micro-entrepreneur loueur de meuble classe relevant de la Cipav avait un taux ACRE inconnu de cette API.",
+      "source": "urssaf-acre"
+    },
+    {
       "date": "2026-07-01",
       "statut": "APPLIQUE",
       "champ": "acre",
@@ -92,6 +105,21 @@
       "apres": "inchangés",
       "raison": "La proposition de loi de finances pour 2025 instaurant un seuil unique de franchise en base de TVA à 25 000 € a été abandonnée. Une loi promulguée le 3 novembre a supprimé cette réforme.",
       "source": "service-public-tva"
+    },
+    {
+      "date": "2026-01-01",
+      "statut": "APPLIQUE",
+      "champ": "mayotte.recouvrement_cotisations",
+      "avant": {
+        "suspension": "1er janvier 2025 au 31 decembre 2025"
+      },
+      "apres": {
+        "reprise": "1er janvier 2026",
+        "abandon_possible": "demande avant le 31 mai 2026"
+      },
+      "raison": "Suite au cyclone Chido : suspension du recouvrement des cotisations et contributions sociales (prolongee jusqu'au 31 decembre 2025 pour les travailleurs independants et auto-entrepreneurs), reprise au 1er janvier 2026. La loi d'urgence pour Mayotte prevoit un abandon total ou partiel des creances, sur demande avant le 31 mai 2026.",
+      "impact": "Les taux Mayotte publies (5,3 / 9,1 / 12 / 16,6) ne changent pas : la suspension etait un report de paiement, pas une modification de taux.",
+      "source": "cssm-mayotte"
     },
     {
       "date": "2025-01-01",

@@ -3,6 +3,9 @@
 // Une seule fonction pour construire le JSON servi : garantit que la page
 // humaine, l'API et le CSV decrivent exactement la meme chose.
 
+import fs from 'fs';
+import path from 'path';
+
 import { prisma, lireAvecRepli } from './prisma';
 
 export const VERSION_API = 'v1';
@@ -103,4 +106,37 @@ export async function chargerMeta() {
     'meta.json'
   );
   return donnees;
+}
+
+/**
+ * Les metadonnees du jeu de donnees : incertitudes declarees et changements a venir.
+ *
+ * POURQUOI CES DONNEES NE SONT PAS EN BASE : ce ne sont pas des valeurs de regime,
+ * ce sont des affirmations sur le jeu de donnees lui-meme. Les mettre dans
+ * seuils_parametre les ferait passer pour des seuils comme les autres.
+ *
+ * POURQUOI IL NE FAUT PAS LES OUBLIER : la regle 2 du projet est « une valeur non
+ * verifiee est publiee comme telle ». Ne pas les servir revient a publier un jeu de
+ * donnees qui parait complet alors qu'il declare des lacunes. Un consommateur machine
+ * ne peut pas voir ce que le depot sait incertain.
+ *
+ * Source : le fichier committe data/parametres.json, qui est la source du seed.
+ */
+export type Metadonnees = {
+  lacunes_connues: unknown[];
+  changement_a_venir: unknown | null;
+};
+
+export async function chargerMetadonnees(): Promise<Metadonnees> {
+  return lireAvecRepli<Metadonnees>(
+    async () => {
+      const brut = fs.readFileSync(path.join(process.cwd(), 'data', 'parametres.json'), 'utf8');
+      const p = JSON.parse(brut);
+      return {
+        lacunes_connues: Array.isArray(p.lacunes_connues) ? p.lacunes_connues : [],
+        changement_a_venir: p.changement_a_venir ?? null,
+      };
+    },
+    'metadonnees.json'
+  ).then((r) => r.donnees ?? { lacunes_connues: [], changement_a_venir: null });
 }

@@ -775,10 +775,43 @@
     "libelle": "prestations_de_services",
     "valeur": 36800,
     "unite": "EUR",
-    "annee": "2023-2025",
+    "annee": "2023",
     "regime": "normal",
     "note": null,
-    "source": "economie-depassement"
+    "source": "service-public-tva-2025"
+  },
+  {
+    "categorie": "tva_seuil_base_historique",
+    "code": "prestations_de_services",
+    "libelle": "prestations_de_services",
+    "valeur": 36800,
+    "unite": "EUR",
+    "annee": "2024",
+    "regime": "normal",
+    "note": null,
+    "source": "service-public-tva-2025"
+  },
+  {
+    "categorie": "tva_seuil_base_historique",
+    "code": "prestations_de_services",
+    "libelle": "prestations_de_services",
+    "valeur": 37500,
+    "unite": "EUR",
+    "annee": "2025",
+    "regime": "normal",
+    "note": null,
+    "source": "service-public-tva-2025"
+  },
+  {
+    "categorie": "tva_seuil_base_historique",
+    "code": "prestations_de_services",
+    "libelle": "prestations_de_services",
+    "valeur": 37500,
+    "unite": "EUR",
+    "annee": "2026",
+    "regime": "normal",
+    "note": null,
+    "source": "loi-2025-1044"
   },
   {
     "categorie": "tva_seuil_base_historique",
@@ -786,10 +819,43 @@
     "libelle": "ventes_biens_hebergement",
     "valeur": 91900,
     "unite": "EUR",
-    "annee": "2023-2025",
+    "annee": "2023",
     "regime": "normal",
     "note": null,
-    "source": "economie-depassement"
+    "source": "service-public-tva-2025"
+  },
+  {
+    "categorie": "tva_seuil_base_historique",
+    "code": "ventes_biens_hebergement",
+    "libelle": "ventes_biens_hebergement",
+    "valeur": 91900,
+    "unite": "EUR",
+    "annee": "2024",
+    "regime": "normal",
+    "note": null,
+    "source": "service-public-tva-2025"
+  },
+  {
+    "categorie": "tva_seuil_base_historique",
+    "code": "ventes_biens_hebergement",
+    "libelle": "ventes_biens_hebergement",
+    "valeur": 85000,
+    "unite": "EUR",
+    "annee": "2025",
+    "regime": "normal",
+    "note": null,
+    "source": "service-public-tva-2025"
+  },
+  {
+    "categorie": "tva_seuil_base_historique",
+    "code": "ventes_biens_hebergement",
+    "libelle": "ventes_biens_hebergement",
+    "valeur": 85000,
+    "unite": "EUR",
+    "annee": "2026",
+    "regime": "normal",
+    "note": null,
+    "source": "loi-2025-1044"
   },
   {
     "categorie": "tva_seuil_majore",
@@ -841,10 +907,43 @@
     "libelle": "prestations_de_services",
     "valeur": 39100,
     "unite": "EUR",
-    "annee": "2023-2025",
+    "annee": "2023",
     "regime": "normal",
     "note": null,
-    "source": "economie-depassement"
+    "source": "service-public-tva-2025"
+  },
+  {
+    "categorie": "tva_seuil_majore_historique",
+    "code": "prestations_de_services",
+    "libelle": "prestations_de_services",
+    "valeur": 39100,
+    "unite": "EUR",
+    "annee": "2024",
+    "regime": "normal",
+    "note": null,
+    "source": "service-public-tva-2025"
+  },
+  {
+    "categorie": "tva_seuil_majore_historique",
+    "code": "prestations_de_services",
+    "libelle": "prestations_de_services",
+    "valeur": 41250,
+    "unite": "EUR",
+    "annee": "2025",
+    "regime": "normal",
+    "note": null,
+    "source": "service-public-tva-2025"
+  },
+  {
+    "categorie": "tva_seuil_majore_historique",
+    "code": "prestations_de_services",
+    "libelle": "prestations_de_services",
+    "valeur": 41250,
+    "unite": "EUR",
+    "annee": "2026",
+    "regime": "normal",
+    "note": null,
+    "source": "loi-2025-1044"
   },
   {
     "categorie": "tva_seuil_majore_historique",
@@ -852,10 +951,43 @@
     "libelle": "ventes_biens_hebergement",
     "valeur": 101000,
     "unite": "EUR",
-    "annee": "2023-2025",
+    "annee": "2023",
     "regime": "normal",
     "note": null,
-    "source": "economie-depassement"
+    "source": "service-public-tva-2025"
+  },
+  {
+    "categorie": "tva_seuil_majore_historique",
+    "code": "ventes_biens_hebergement",
+    "libelle": "ventes_biens_hebergement",
+    "valeur": 101000,
+    "unite": "EUR",
+    "annee": "2024",
+    "regime": "normal",
+    "note": null,
+    "source": "service-public-tva-2025"
+  },
+  {
+    "categorie": "tva_seuil_majore_historique",
+    "code": "ventes_biens_hebergement",
+    "libelle": "ventes_biens_hebergement",
+    "valeur": 93500,
+    "unite": "EUR",
+    "annee": "2025",
+    "regime": "normal",
+    "note": null,
+    "source": "service-public-tva-2025"
+  },
+  {
+    "categorie": "tva_seuil_majore_historique",
+    "code": "ventes_biens_hebergement",
+    "libelle": "ventes_biens_hebergement",
+    "valeur": 93500,
+    "unite": "EUR",
+    "annee": "2026",
+    "regime": "normal",
+    "note": null,
+    "source": "loi-2025-1044"
   },
   {
     "categorie": "versement_liberatoire",
@@ -900,5 +1032,71 @@
     "regime": "normal",
     "note": null,
     "source": "service-public-cotisations"
+  },
+  {
+    "categorie": "versement_liberatoire_seuil_revenu",
+    "code": "option_2026",
+    "libelle": "RFR 2024 par part — option 2026",
+    "valeur": 29315,
+    "unite": "EUR_PAR_PART",
+    "annee": "2026",
+    "regime": "versement_liberatoire",
+    "note": null,
+    "source": "impots-versement-liberatoire"
+  },
+  {
+    "categorie": "versement_liberatoire_seuil_revenu",
+    "code": "option_2026_couple",
+    "libelle": "RFR 2024 couple (2 parts) — option 2026",
+    "valeur": 58630,
+    "unite": "EUR_PAR_PART",
+    "annee": "2026",
+    "regime": "versement_liberatoire",
+    "note": null,
+    "source": "impots-versement-liberatoire"
+  },
+  {
+    "categorie": "versement_liberatoire_seuil_revenu",
+    "code": "option_2026_couple_2_enfants",
+    "libelle": "RFR 2024 couple + 2 enfants (3 parts) — option 2026",
+    "valeur": 87945,
+    "unite": "EUR_PAR_PART",
+    "annee": "2026",
+    "regime": "versement_liberatoire",
+    "note": null,
+    "source": "impots-versement-liberatoire"
+  },
+  {
+    "categorie": "versement_liberatoire_seuil_revenu",
+    "code": "option_2027",
+    "libelle": "RFR 2025 par part — option 2027",
+    "valeur": 29579,
+    "unite": "EUR_PAR_PART",
+    "annee": "2027",
+    "regime": "versement_liberatoire",
+    "note": null,
+    "source": "impots-versement-liberatoire"
+  },
+  {
+    "categorie": "versement_liberatoire_seuil_revenu",
+    "code": "option_2027_couple",
+    "libelle": "RFR 2025 couple (2 parts) — option 2027",
+    "valeur": 59158,
+    "unite": "EUR_PAR_PART",
+    "annee": "2027",
+    "regime": "versement_liberatoire",
+    "note": null,
+    "source": "impots-versement-liberatoire"
+  },
+  {
+    "categorie": "versement_liberatoire_seuil_revenu",
+    "code": "option_2027_couple_2_enfants",
+    "libelle": "RFR 2025 couple + 2 enfants (3 parts) — option 2027",
+    "valeur": 88737,
+    "unite": "EUR_PAR_PART",
+    "annee": "2027",
+    "regime": "versement_liberatoire",
+    "note": null,
+    "source": "impots-versement-liberatoire"
   }
 ]

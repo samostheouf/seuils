@@ -39,12 +39,17 @@ const C = lireJSON('changelog.json');
 
 // --- construction des lignes -------------------------------------------------
 
-const sources = P.sources.map((s) => ({
-  id: s.id,
-  nom: s.nom,
-  url: s.url,
-  nature: s.id.split('-')[0],
-}));
+// Les sources sont declarees dans DEUX fichiers : parametres.json (sources courantes)
+// et historique.json (sources propres a une annee passee). Le seed doit les
+// fusionner, sinon toute valeur historique pointe vers une source inexistante
+// et la contrainte de cle etrangere refuse l'insertion.
+const sources = [];
+const idsSources = new Set();
+for (const s of [...P.sources, ...H.sources]) {
+  if (!s || !s.id || !s.nom || idsSources.has(s.id)) continue;
+  idsSources.add(s.id);
+  sources.push({ id: s.id, nom: s.nom, url: s.url, nature: s.id.split('-')[0] });
+}
 
 const parametres = [];
 const ajouter = (categorie, code, libelle, valeur, unite, annee, sourceId, regime = 'normal', note = null) => {
@@ -86,10 +91,57 @@ for (const [annee, vals] of Object.entries(H.seuils_micro_fiscal.par_annee)) {
   }
 }
 
-for (const [code, v] of Object.entries(H.seuils_tva_franchise.par_annee['2023_2024_2025'])) {
-  if (typeof v !== 'object' || !v.seuil_base) continue;
-  ajouter('tva_seuil_base_historique', code, code, v.seuil_base, 'EUR', '2023-2025', 'economie-depassement');
-  ajouter('tva_seuil_majore_historique', code, code, v.seuil_majore, 'EUR', '2023-2025', 'economie-depassement');
+// Seuils de franchise TVA historiques : chaque annee publiee est une annee distincte.
+// Les annees sont iterees, jamais en dur : une annee ajoutee dans historique.json
+// doit etre seedee sans modifier ce fichier.
+for (const [annee, bloc] of Object.entries(H.seuils_tva_franchise.par_annee)) {
+  if (typeof bloc !== 'object' || bloc === null) continue;
+  for (const [code, v] of Object.entries(bloc)) {
+    if (typeof v !== 'object' || v === null) continue;
+    const obj = v;
+    if (typeof obj.seuil_base !== 'number') continue;
+    ajouter('tva_seuil_base_historique', code, code, obj.seuil_base, 'EUR', annee, bloc.source ?? H.seuils_tva_franchise.source);
+    ajouter('tva_seuil_majore_historique', code, code, obj.seuil_majore, 'EUR', annee, bloc.source ?? H.seuils_tva_franchise.source);
+  }
+}
+
+// Seuil de revenu ouvrant droit au versement liberatoire (condition d'acces).
+// C'est une condition, pas un taux : elle est publiee comme telle, avec son annee
+// d'option et son annee de reference, pour ne pas la confondre avec les taux.
+if (P.versement_liberatoire.conditions_revenu) {
+  const cond = P.versement_liberatoire.conditions_revenu;
+  for (const v of cond.valeurs) {
+    ajouter(
+      'versement_liberatoire_seuil_revenu',
+      `option_${v.option_annee}`,
+      `RFR ${v.rfr_annee_reference} par part — option ${v.option_annee}`,
+      v.seuil_par_part,
+      'EUR_PAR_PART',
+      String(v.option_annee),
+      cond.source,
+      'versement_liberatoire'
+    );
+    ajouter(
+      'versement_liberatoire_seuil_revenu',
+      `option_${v.option_annee}_couple`,
+      `RFR ${v.rfr_annee_reference} couple (2 parts) — option ${v.option_annee}`,
+      v.couple_2_parts,
+      'EUR_PAR_PART',
+      String(v.option_annee),
+      cond.source,
+      'versement_liberatoire'
+    );
+    ajouter(
+      'versement_liberatoire_seuil_revenu',
+      `option_${v.option_annee}_couple_2_enfants`,
+      `RFR ${v.rfr_annee_reference} couple + 2 enfants (3 parts) — option ${v.option_annee}`,
+      v.couple_2_enfants_3_parts,
+      'EUR_PAR_PART',
+      String(v.option_annee),
+      cond.source,
+      'versement_liberatoire'
+    );
+  }
 }
 
 const changements = C.entrees.map((e) => ({
@@ -133,6 +185,35 @@ try {
          "verifieLe"=CURRENT_TIMESTAMP, "majLe"=CURRENT_TIMESTAMP`,
       [id, p.categorie, p.code, p.libelle, p.valeur, p.unite, p.annee, p.regime, p.note, p.sourceId]
     );
+  }
+
+  // --- purge des lignes qui ne sont plus dans la source -------------------------
+  //
+  // Un seed idempotent NE suffit pas : il ecrase les lignes dont la cle metier
+  // existe toujours, mais il laisse en place les lignes dont la cle a disparu.
+  // Concret : en renommant l'annee '2023-2025' en '2023','2024','2025', les
+  // anciennes lignes restaient et l'API servait encore l'ancienne valeur 2025.
+  // Ici, toute ligne absente de la source est supprimee : la base ne peut
+  // jamais contenir une valeur que le depot ne publie pas.
+  {
+    const cles = parametres.map((p) => [p.categorie, p.code, p.annee, p.regime]);
+    const exists = new Set(cles.map((c) => c.join('|')));
+    const resultat = await client.query(
+      'select categorie, code, annee, regime from seuils_parametre'
+    );
+    let purges = 0;
+    for (const ligne of resultat.rows) {
+      const cle = [ligne.categorie, ligne.code, ligne.annee, ligne.regime].join('|');
+      if (!exists.has(cle)) {
+        await client.query(
+          `delete from seuils_parametre
+            where categorie=$1 and code=$2 and annee=$3 and regime=$4`,
+          [ligne.categorie, ligne.code, ligne.annee, ligne.regime]
+        );
+        purges++;
+      }
+    }
+    if (purges > 0) console.log(`   ${purges} ligne(s) obsolete(s) supprimee(s)`);
   }
 
   for (const c of changements) {

@@ -29,6 +29,7 @@ Résultat : tout développeur qui construit un outil de facturation, de comptabi
 | `GET /api/v1/drom.json` | Taux DOM-TOM et Mayotte |
 | `GET /api/v1/csv` | Export CSV complet |
 | `GET /api/v1/parametres.csv` | Export CSV (alias) |
+| `GET /api/v1/parametres.json` → `versement_liberatoire_seuil_revenu` | Seuil de revenu ouvrant droit au versement libératoire (RFR par part) |
 | `GET /feed` | Flux RSS 2.0 des derniers changements |
 | `GET /api/health` | État du service (base joignable, volumétrie) |
 
@@ -84,3 +85,24 @@ la main. Résultat : une panne de base donne un site dégradé mais juste, jamai
 ## Avertissement
 
 Ce projet n'est affilié à aucune administration et ne remplace pas la lecture des textes officiels. En cas de divergence, la source officielle fait foi.
+
+## Audit du site
+
+```bash
+python3 scripts/audit-seuils.py          # score 20/20 sur 8 dimensions mesurées
+python3 scripts/valider.py               # 15 contrôles bloquants avant publication
+python3 scripts/verifier-base.mjs        # la base contient exactement la source
+python3 scripts/verifier-live.py         # chaque endpoint servi en production
+```
+
+L'audit mesure 8 dimensions, 20 points : API, données, sécurité, SEO, performance,
+documentation, distribution, cohérence. Un point est une mesure vérifiable, jamais
+une impression ; chaque dimension affiche le nombre de contrôles lus, et un contrôle
+sans fichier à lire est `n/a`, jamais `ok`.
+
+Le score affiché est le score réel : les écarts sont listés, pas masqués.
+
+## Version des données
+
+Version courante : **2026.4**. Historique complet dans l'endpoint `changelog.json` et
+dans `parametres.json` (`historique_versions`).

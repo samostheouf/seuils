@@ -1,0 +1,34 @@
+{
+  "lacunes_connues": [
+    {
+      "objet": "Cumul ACRE + DROM",
+      "detail": "Aucune source officielle consultée ne tranche si l'ACRE et les taux réduits DROM se cumulent ou s'excluent. Une source tierce affirme qu'un micro-entrepreneur en DROM ne peut pas bénéficier de l'ACRE — non confirmé par une source officielle.",
+      "statut": "NON_TROUVE"
+    },
+    {
+      "objet": "Durée exacte des périodes DROM",
+      "detail": "Contradiction dans la source entre « 24 mois » (note) et 3 périodes sur 3 ans (tableau). Non tranchée.",
+      "statut": "NON_TROUVE"
+    },
+    {
+      "objet": "Taux DROM Cipav pour 2026",
+      "detail": "Verifies en 2026 : le tableau de la CPS Saint-Barthélemy (mise a jour le 31/03/2026) publie les taux Cipav DROM pour 2026 a 7,80 % / 11,60 % / 15,50 % sur les trois periodes. Plus aucune incertitude sur ces valeurs.",
+      "statut": "VERIFIE",
+      "source": "https://cps-stbarth.msa.fr/lfp/micro-entrepreneur/calcul-des-cotisations"
+    },
+    {
+      "objet": "Seuils de chiffre d'affaires spécifiques à Mayotte",
+      "detail": "Non re-vérifiés pour 2026.",
+      "statut": "NON_TROUVE"
+    }
+  ],
+  "changement_a_venir": {
+    "date": "2027-01-01",
+    "objet": "Recodification de la TVA",
+    "contenu": "La mention de franchise en base de TVA passe de « article 293 B du CGI » à « article L.233-3 du Code des impositions des biens et des services (CIBS) », du fait de l'ordonnance n° 2025-1247 du 17 décembre 2025 et de l'ordonnance n° 2026-671 du 27 juillet 2026.",
+    "impact": "Les modèles de factures et les logiciels de facturation devront être mis à jour avant le 1er janvier 2027.",
+    "source": "impots-tva",
+    "tolerance": "Du 1er janvier 2027 au 30 juin 2028, l'ancienne reference au CGI (article 293 B) reste admise sur les factures. A partir du 1er juillet 2028, seule la reference au CIBS est admise.",
+    "source_tolerance": "https://www.legifrance.gouv.fr/eli/loi/2025/11/3/ECOX2515950L/jo/texte"
+  }
+}

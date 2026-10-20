@@ -24,10 +24,22 @@
     "nature": "impots"
   },
   {
+    "id": "impots-versement-liberatoire",
+    "nom": "impots.gouv.fr — Le versement liberatoire : conditions, seuils de revenu et taux",
+    "url": "https://www.impots.gouv.fr/professionnel/le-versement-liberatoire",
+    "nature": "impots"
+  },
+  {
     "id": "legifrance-decret-2026-69",
     "nom": "Légifrance — Décret n° 2026-69 du 6 février 2026 (taux d'exonération ACRE, art. 2 : 50 % remplacé par 75 %)",
     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053449085",
     "nature": "legifrance"
+  },
+  {
+    "id": "loi-2025-1044",
+    "nom": "Loi n° 2025-1044 du 3 novembre 2025 visant à garantir un cadre fiscal stable, juste et lisible pour les micro entrepreneurs et les petites entreprises",
+    "url": "https://www.legifrance.gouv.fr/eli/loi/2025/11/3/ECOX2515950L/jo/texte",
+    "nature": "loi"
   },
   {
     "id": "service-public-acre",
@@ -63,6 +75,12 @@
     "id": "service-public-tva",
     "nom": "Service Public Entreprendre — Franchise en base de TVA (vérifié le 01/01/2026)",
     "url": "https://entreprendre.service-public.gouv.fr/vosdroits/F21746",
+    "nature": "service"
+  },
+  {
+    "id": "service-public-tva-2025",
+    "nom": "Service Public Entreprendre — Franchise en base de TVA : seuils applicables depuis le 1er janvier 2025 (publié le 05/11/2025, avec colonne comparative 2024)",
+    "url": "https://entreprendre.service-public.gouv.fr/actualites/A17995",
     "nature": "service"
   },
   {

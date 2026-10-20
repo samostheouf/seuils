@@ -1,39 +1,68 @@
-import Link from "next/link";
+import Link from 'next/link';
+import type { Metadata } from 'next';
+import { MODULES, TITRE_FORMATION, SOUS_TITRE_FORMATION, INTRODUCTION_FORMATION } from '../../lib/formation';
+
+export const metadata: Metadata = {
+  title: TITRE_FORMATION,
+  description:
+    'Le parcours en 5 étapes pour lancer et tenir une activité de micro-entrepreneur : seuils, cotisations, TVA, ACRE et historique des changements.',
+  alternates: { canonical: '/formation' },
+  openGraph: {
+    type: 'article',
+    title: TITRE_FORMATION,
+    description: SOUS_TITRE_FORMATION,
+    url: 'https://seuils-virid.vercel.app/formation',
+  },
+};
 
 export default function FormationPage() {
-  const modules = [
-    { id: 1, title: "Identifier une idée viable", desc: "Trouver un problème réel que les gens paient pour résoudre" },
-    { id: 2, title: "Construire un MVP", desc: "Avoir un produit fonctionnel en 7 jours, pas plus" },
-    { id: 3, title: "Déployer en production", desc: "Votre produit est accessible par n'importe qui" },
-    { id: 4, title: "Attirer vos premiers clients", desc: "3 clients payants en 7 jours, sans publicité" },
-    { id: 5, title: "Automatiser et scaler", desc: "Votre produit continue de vendre pendant que vous dormez" },
-  ];
-
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", padding: "20px", fontFamily: "system-ui" }}>
-      <h1 style={{ fontSize: 28, marginBottom: 10 }}>Formation : Lancer un projet numérique avec l&apos;IA</h1>
-      <p style={{ color: "#666", marginBottom: 30 }}>
-        5 modules complets pour passer de l&apos;idée au produit fini en 7 jours.
-      </p>
+    <div className="wrap">
+      <header>
+        <h1>{TITRE_FORMATION}</h1>
+        <p className="sub">{SOUS_TITRE_FORMATION}</p>
+        <span className="badge">{MODULES.length} modules · quiz par module · données sourcées</span>
+      </header>
 
-      <div style={{ display: "grid", gap: 15 }}>
-        {modules.map(m => (
-          <Link key={m.id} href={`/formation/modules/${m.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-            <div style={{ padding: 20, border: "1px solid #e0e0e0", borderRadius: 8, cursor: "pointer" }}>
-              <h3 style={{ margin: "0 0 8px", fontSize: 18 }}>Module {m.id} : {m.title}</h3>
-              <p style={{ margin: 0, color: "#666" }}>{m.desc}</p>
-            </div>
+      <div className="box">
+        <h3>Pourquoi ce parcours</h3>
+        {INTRODUCTION_FORMATION.map((p, i) => (
+          <p className="note" key={i} style={{ margin: i === INTRODUCTION_FORMATION.length - 1 ? 0 : '0 0 10px' }}>
+            {p}
+          </p>
+        ))}
+      </div>
+
+      <h2>Les modules</h2>
+      <p className="note">Chaque module se termine par un quiz de 3 questions. Les réponses ne quittent pas votre appareil.</p>
+
+      <div className="modules">
+        {MODULES.map((m) => (
+          <Link className="module" key={m.id} href={`/formation/modules/${m.id}`}>
+            <h3>Module {m.id} — {m.titre}</h3>
+            <p>{m.accroche}</p>
+            <span className="module-cta">Commencer →</span>
           </Link>
         ))}
       </div>
 
-      <div style={{ marginTop: 40, padding: 20, background: "#f5f5f5", borderRadius: 8 }}>
-        <h2 style={{ fontSize: 20, marginBottom: 10 }}>Certificat de complétion</h2>
-        <p>Obtenez votre certificat après avoir terminé les 5 modules et quiz.</p>
-        <Link href="/formation/certificat" style={{ color: "#0070f3" }}>
-          Accéder au certificat
-        </Link>
+      <h2>Après les 5 modules</h2>
+      <p className="note">
+        Le certificat atteste que vous avez lu les modules et obtenu les 3 bonnes réponses à chaque quiz.
+        Il n’est pas indexé par les moteurs de recherche.
+      </p>
+      <div className="box">
+        <p className="note" style={{ margin: 0 }}>
+          <Link href="/formation/certificat">Accéder au certificat →</Link>
+        </p>
       </div>
+
+      <footer>
+        <p>
+          <strong>Données citées</strong> — chaque seuil, taux et date vient de la base du site et porte
+          l’identifiant de sa source officielle. Le certificat ne se base que sur les quiz de ce parcours.
+        </p>
+      </footer>
     </div>
   );
 }

@@ -45,6 +45,10 @@ export default async function Page() {
   const drom3 = par('drom_p3');
   const mayotte = par('mayotte');
   const histMicro = P.filter((p) => p.categorie === 'seuil_micro_fiscal_historique');
+  const histTva = P.filter((p) => p.categorie === 'tva_seuil_base_historique');
+  const anneesTvaHist = Array.from(new Set(histTva.map((p) => p.annee))).sort();
+  const valeurTvaHist = (code: string, annee: string) =>
+    histTva.find((p) => p.code === code && p.annee === annee)?.valeur;
 
   const anneesHist = Array.from(new Set(histMicro.map((p) => p.annee))).sort();
   const codesHist = Array.from(new Set(histMicro.map((p) => p.code)));
@@ -214,6 +218,44 @@ export default async function Page() {
             })}
           </tr>
         ))}
+      </table>
+
+      <h2>Franchise TVA — seuils des années passées</h2>
+      <p className="note">
+        Les seuils de franchise changent par année. 2023 et 2024 partagent les mêmes valeurs ;
+        2025 et 2026 en partagent d&apos;autres. Les confondre produit une erreur de facturation.
+      </p>
+      <table>
+        <tr>
+          <th>Catégorie</th>
+          {anneesTvaHist.map((a) => <th key={a} style={{ textAlign: 'right' }}>{a}</th>)}
+        </tr>
+        <tr>
+          <td>Ventes, hébergement — seuil de base</td>
+          {anneesTvaHist.map((a) => (
+            <td key={a} className="num">{valeurTvaHist('ventes_biens_hebergement', a) === undefined ? '—' : euro(valeurTvaHist('ventes_biens_hebergement', a)!)}</td>
+          ))}
+        </tr>
+        <tr>
+          <td>Ventes, hébergement — seuil majoré</td>
+          {anneesTvaHist.map((a) => {
+            const maj = P.find((p) => p.categorie === 'tva_seuil_majore_historique' && p.code === 'ventes_biens_hebergement' && p.annee === a);
+            return <td key={a} className="num">{maj ? euro(maj.valeur) : '—'}</td>;
+          })}
+        </tr>
+        <tr>
+          <td>Prestations de services — seuil de base</td>
+          {anneesTvaHist.map((a) => (
+            <td key={a} className="num">{valeurTvaHist('prestations_de_services', a) === undefined ? '—' : euro(valeurTvaHist('prestations_de_services', a)!)}</td>
+          ))}
+        </tr>
+        <tr>
+          <td>Prestations de services — seuil majoré</td>
+          {anneesTvaHist.map((a) => {
+            const maj = P.find((p) => p.categorie === 'tva_seuil_majore_historique' && p.code === 'prestations_de_services' && p.annee === a);
+            return <td key={a} className="num">{maj ? euro(maj.valeur) : '—'}</td>;
+          })}
+        </tr>
       </table>
 
       <h2>Historique des changements</h2>

@@ -57,6 +57,19 @@ try {
   const maintenant = new Date().toISOString().slice(0, 10);
   ecrire('meta.json', { version: maintenant, parametres: parametres.length, miseAJour: maintenant });
 
+  // Metadonnees du jeu de donnees : elles ne sont pas en base, donc sans ce filet
+  // une panne de lecture du fichier les ferait disparaitre de l'API.
+  try {
+    const brut = fs.readFileSync(path.join(RACINE, 'data', 'parametres.json'), 'utf8');
+    const p = JSON.parse(brut);
+    ecrire('metadonnees.json', {
+      lacunes_connues: Array.isArray(p.lacunes_connues) ? p.lacunes_connues : [],
+      changement_a_venir: p.changement_a_venir ?? null,
+    });
+  } catch (e) {
+    console.error('   metadonnees.json non genere :', e.message);
+  }
+
   console.log('Snapshot genere depuis la base :');
   console.log(`   parametres.json  ${parametres.length} entrees`);
   console.log(`   changelog.json   ${changements.length} entrees`);
